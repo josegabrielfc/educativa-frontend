@@ -1,30 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:educativa_frontend/src/models/usuario/usuario_model.dart';
-
 
 class UsuarioProvider extends ChangeNotifier {
-  UsuarioModel? _usuario;
+  String? _usuarioId;
   String? _token;
 
   // Método para actualizar el usuario y notificar a los escuchas
-  void setUsuario(UsuarioModel nuevoUsuario) {
-    _usuario = nuevoUsuario;
+  void setUsuario(String nuevoUsuarioId) {
+    _usuarioId = nuevoUsuarioId;
     notifyListeners();
   }
 
   // Método get para obtener el usuario
-  UsuarioModel? get usuario => _usuario;
+  String? get usuario => _usuarioId;
 
-  void vaciarUsuarioProvider() {
-    _usuario = null;
+  void setToken(String token) {
+    _token = token;
     notifyListeners();
   }
 
-    // Método get para obtener el token
+  // Método get para obtener el token
   String? get token => _token;
-  
-   void setToken(String token) {
-    _token=token;
+
+  void vaciarUsuarioProvider() {
+    _usuarioId = null;
+    _token = null;
     notifyListeners();
   }
 }

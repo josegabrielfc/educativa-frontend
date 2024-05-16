@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-String urlBase = 'http://localhost:8080';
+String urlBase = 'http://localhost:3000';
 
 Color azulColor = const Color.fromRGBO(52, 152, 219, 1);
 Color azulClaColor = const Color.fromRGBO(70, 123, 144, 1);

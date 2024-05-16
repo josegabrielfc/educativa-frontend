@@ -37,7 +37,6 @@ class _LoginPageState extends State<LoginPage> {
         ),
         child: Scaffold(
           backgroundColor: Colors.transparent.withOpacity(0.5),
-          
           body: Center(
             child: Container(
               height: size.height * 0.6,
@@ -94,9 +93,15 @@ class _LoginPageState extends State<LoginPage> {
                             correo: _controllerEmail.text);
                         final response = await servicePorvider.loginService
                             .login(loginRequest);
-                        if (response.type == 'success') {
-                          // ignore: use_build_context_synchronously
-                          obtenerInfoUsuario(_controllerEmail.value.text, response.msg!, context);
+                        if (response["type"] == 'success') {
+
+
+                            // ignore: use_build_context_synchronously
+                            final usuarioProvider =
+                                Provider.of<UsuarioProvider>(context,
+                                    listen: false);
+                            usuarioProvider.setToken(response["msg"]["token"]);
+                            usuarioProvider.setUsuario(response["msg"]["usuarioid"]);
 
                           // ignore: use_build_context_synchronously
                           Navigator.pushNamed(context, "admin-page");
@@ -115,7 +120,7 @@ class _LoginPageState extends State<LoginPage> {
                               textoBoton: 'Volver',
                               image: Image.asset('assets/images/warning.jpg',
                                   height: 80),
-                              mensaje: response.msg,
+                              mensaje: response["msg"],
                               dobleBoton: false,
                             ),
                           );
@@ -129,16 +134,4 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
-}
-
-Future<void> obtenerInfoUsuario(
-    String correo, String token, BuildContext context) async {
-  final servicePorvider = Provider.of<ServicesProvider>(context, listen: false);
-  final response =
-      await servicePorvider.usuarioService.detalleUsuario(correo, token);
-
-  // ignore: use_build_context_synchronously
-  final usuarioProvider = Provider.of<UsuarioProvider>(context, listen: false);
-  usuarioProvider.setToken(token);
-  usuarioProvider.setUsuario(response);
 }
