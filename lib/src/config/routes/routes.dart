@@ -7,5 +7,9 @@ final router = Router(routes: [
       matcher: Matcher.path(LoginPage.name),
       materialBuilder: (_, __) => const LoginPage(),
     ),
+    Route(
+      matcher: Matcher.path(SignupPage.name),
+      materialBuilder: (_, __) => const SignupPage(),
+    ),
   ])
 ]);
