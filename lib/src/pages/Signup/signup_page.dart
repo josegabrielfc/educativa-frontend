@@ -1,30 +1,31 @@
+import 'package:educativa_frontend/src/pages/Login/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:educativa_frontend/src/config/environment/environment.dart';
 import 'package:educativa_frontend/src/models/login/login_model.dart';
 import 'package:educativa_frontend/src/providers/service_provider.dart';
-import 'package:educativa_frontend/src/providers/usuario_provider.dart';
 import 'package:educativa_frontend/src/widgets/inputs.dart';
 import 'package:educativa_frontend/src/widgets/widgets_general.dart';
 
-class LoginPage extends StatefulWidget {
-  static const name = 'login-page';
-  const LoginPage({super.key});
+class SignupPage extends StatefulWidget {
+  static const name = 'signup-page';
+  const SignupPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<SignupPage> createState() => _SignupPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SignupPageState extends State<SignupPage> {
   final TextEditingController _controllerEmail = TextEditingController();
   final TextEditingController _controllerPassword = TextEditingController();
+  final TextEditingController _controllerRepetirPassword = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final serviceProvider =
         Provider.of<ServicesProvider>(context, listen: false);
 
-    return Scaffold(
+     return Scaffold(
       body: Container(
         width: size.width,
         height: size.height,
@@ -38,7 +39,7 @@ class _LoginPageState extends State<LoginPage> {
           backgroundColor: Colors.transparent.withOpacity(0.5),
           body: Center(
             child: Container(
-              height: size.height * 0.6,
+              height: size.height * 0.7,
               width:
                   selectDevice(web: 0.35, cel: 0.875, sizeContext: size.width),
               decoration: BoxDecoration(
@@ -46,10 +47,10 @@ class _LoginPageState extends State<LoginPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  separadorVertical(context, 7.5),
-                  texto('¡Bienvenido al Curso!', fontMedium, extraBigSize + 4,
+                  separadorVertical(context, 6),
+                  texto('¡Registrate!', fontMedium, extraBigSize + 4,
                       negroColor, TextAlign.justify),
-                  separadorVertical(context, 5.5),
+                  separadorVertical(context, 4.5),
                   Form(
                     child: CustomTextFormField(
                       sizeBorderRadius: 10,
@@ -62,7 +63,7 @@ class _LoginPageState extends State<LoginPage> {
                       controller: _controllerEmail,
                     ),
                   ),
-                  separadorVertical(context, 7),
+                  separadorVertical(context, 6),
                   Form(
                     child: CustomPassword(
                       sizeBorderRadius: 10,
@@ -75,18 +76,33 @@ class _LoginPageState extends State<LoginPage> {
                       controller: _controllerPassword,
                     ),
                   ),
+                  separadorVertical(context, 6),
+                  Form(
+                    child: CustomPassword(
+                      sizeBorderRadius: 10,
+                      hintColor: grisOscColor,
+                      borderColor: negroClaColor,
+                      width: selectDevice(
+                          web: 0.24, cel: 0.7, sizeContext: size.width),
+                      height: size.height * 0.06,
+                      hint: "Repetir Contraseña *",
+                      controller: _controllerRepetirPassword,
+                    ),
+                  ),
                   separadorVertical(context, 7.5),
                   CustomButton(
                       color: azulOscColor,
                       hoverColor: azulClaColor,
                       size: bigSize + 4,
-                      textButton: 'Iniciar sesión',
+                      textButton: 'Registrarse',
                       heightButton: size.height * 0.065,
                       widthButton: selectDevice(
                           web: 0.22, cel: 0.64, sizeContext: size.width),
                       sizeBorderRadius: 15,
                       duration: 1000,
                       onTap: () async {
+
+                        if(_controllerPassword.text == _controllerRepetirPassword.text){
                         LoginModel loginRequest = LoginModel(
                             contrasena: _controllerPassword.text,
                             correo: _controllerEmail.text);
@@ -119,14 +135,33 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           );
                         }
+                      } else {
+                        showDialog(
+                            // ignore: use_build_context_synchronously
+                            context: context,
+                            builder: (context) => AlertaVolver(
+                              width: 200,
+                              height: 200,
+                              function: () {
+                                Navigator.of(context).pop();
+                              },
+                              widthButton: 10,
+                              textoBoton: 'Volver',
+                              image: Image.asset('assets/images/warning.jpg',
+                                  height: 80),
+                              mensaje: "Las contraseñas no coinciden",
+                              dobleBoton: false,
+                            ),
+                          );
+                      }
                       }),
                       separadorVertical(context, 2),
                   Center(
                     child: InkWell(
                       onTap: () {
-                         Navigator.pushNamed(context, "signup-page");
+                         Navigator.pushNamed(context, "login-page");
                       },
-                      child: texto("Registrarse", fontBold, mediumSize, azulOscColor, TextAlign.center)
+                      child: texto("¿Ya estas registrado? Inicia sesión.", fontBold, mediumSize, azulOscColor, TextAlign.center)
                         ),
                   ),
                 ],
@@ -137,16 +172,4 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
-}
-
-Future<void> obtenerInfoUsuario(
-    String correo, String token, BuildContext context) async {
-  final servicePorvider = Provider.of<ServicesProvider>(context, listen: false);
-  final response =
-      await servicePorvider.usuarioService.detalleUsuario(correo, token);
-
-  // ignore: use_build_context_synchronously
-  final usuarioProvider = Provider.of<UsuarioProvider>(context, listen: false);
-  usuarioProvider.setToken(token);
-  usuarioProvider.setUsuario(response);
 }
