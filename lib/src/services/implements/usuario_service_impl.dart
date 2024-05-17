@@ -8,8 +8,8 @@ import 'package:educativa_frontend/src/services/mixins/usuario_service.dart';
 
 class UsuarioServiceImlp with UsuarioService {
   @override
-  Future<Response> registrar(UsuarioRegistro usuarioRegistro, String token) async {
-    final String url = '$urlBase/usuario/login';
+  Future<Response> registrar(UsuarioRegistro usuarioRegistro) async {
+    final String url = '$urlBase/usuario/registro';
 
     final Map<String, String> headers = {
       'Content-Type': 'application/json',
@@ -22,8 +22,7 @@ class UsuarioServiceImlp with UsuarioService {
     );
 
     final responseBody = json.decode(response.body);
-
-    return responseBody;
+    return Response.fromJson(responseBody);
   }
   
 }

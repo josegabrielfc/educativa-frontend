@@ -4,6 +4,6 @@ import '../../models/global_models.dart';
 
 mixin UsuarioService {
   Future<Response> registrar(
-      UsuarioRegistro usuarioRegistro, String token);
+      UsuarioRegistro usuarioRegistro);
 
 }

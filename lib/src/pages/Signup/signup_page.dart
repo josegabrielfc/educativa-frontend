@@ -1,8 +1,7 @@
-import 'package:educativa_frontend/src/pages/Login/login_page.dart';
+import 'package:educativa_frontend/src/models/usuario/usuario_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:educativa_frontend/src/config/environment/environment.dart';
-import 'package:educativa_frontend/src/models/login/login_model.dart';
 import 'package:educativa_frontend/src/providers/service_provider.dart';
 import 'package:educativa_frontend/src/widgets/inputs.dart';
 import 'package:educativa_frontend/src/widgets/widgets_general.dart';
@@ -16,10 +15,12 @@ class SignupPage extends StatefulWidget {
 }
 
 class _SignupPageState extends State<SignupPage> {
+  final TextEditingController _controllerNombre = TextEditingController();
   final TextEditingController _controllerEmail = TextEditingController();
   final TextEditingController _controllerPassword = TextEditingController();
   final TextEditingController _controllerRepetirPassword =
       TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -40,7 +41,7 @@ class _SignupPageState extends State<SignupPage> {
           backgroundColor: Colors.transparent.withOpacity(0.5),
           body: Center(
             child: Container(
-              height: size.height * 0.7,
+              height: size.height * 0.82,
               width:
                   selectDevice(web: 0.35, cel: 0.875, sizeContext: size.width),
               decoration: BoxDecoration(
@@ -51,6 +52,19 @@ class _SignupPageState extends State<SignupPage> {
                   separadorVertical(context, 6),
                   texto('¡Registrate!', fontMedium, extraBigSize + 4,
                       negroColor, TextAlign.justify),
+                  separadorVertical(context, 4.5),
+                  Form(
+                    child: CustomTextFormField(
+                      sizeBorderRadius: 10,
+                      hintColor: grisOscColor,
+                      borderColor: negroClaColor,
+                      width: selectDevice(
+                          web: 0.24, cel: 0.7, sizeContext: size.width),
+                      height: size.height * 0.06,
+                      hint: "Nombre *",
+                      controller: _controllerNombre,
+                    ),
+                  ),
                   separadorVertical(context, 4.5),
                   Form(
                     child: CustomTextFormField(
@@ -102,26 +116,106 @@ class _SignupPageState extends State<SignupPage> {
                       sizeBorderRadius: 15,
                       duration: 1000,
                       onTap: () async {
-                        // if (true) {
-                        // } else {
-                        //   showDialog(
-                        //     // ignore: use_build_context_synchronously
-                        //     context: context,
-                        //     builder: (context) => AlertaVolver(
-                        //       width: 200,
-                        //       height: 200,
-                        //       function: () {
-                        //         Navigator.of(context).pop();
-                        //       },
-                        //       widthButton: 10,
-                        //       textoBoton: 'Volver',
-                        //       image: Image.asset('assets/images/warning.jpg',
-                        //           height: 80),
-                        //       mensaje: "Las contraseñas no coinciden",
-                        //       dobleBoton: false,
-                        //     ),
-                        //   );
-                        // }
+                        String nombre = _controllerNombre.text;
+                        String correo = _controllerEmail.text;
+                        String contrasena = _controllerPassword.text;
+                        String contrasenaConfirm =
+                            _controllerRepetirPassword.text;
+                        if (nombre.isEmpty ||
+                            correo.isEmpty ||
+                            contrasena.isEmpty ||
+                            contrasenaConfirm.isEmpty) {
+                          showDialog(
+                            // ignore: use_build_context_synchronously
+                            context: context,
+                            builder: (context) => AlertaVolver(
+                              width: 200,
+                              height: 200,
+                              function: () {
+                                Navigator.of(context).pop();
+                              },
+                              widthButton: 10,
+                              textoBoton: 'Volver',
+                              image: Image.asset('assets/images/warning.jpg',
+                                  height: 80),
+                              mensaje: "Todos los campos son obligatorios",
+                              dobleBoton: false,
+                            ),
+                          );
+                          return;
+                        }
+
+                        if (contrasena != contrasenaConfirm) {
+                          showDialog(
+                            // ignore: use_build_context_synchronously
+                            context: context,
+                            builder: (context) => AlertaVolver(
+                              width: 200,
+                              height: 200,
+                              function: () {
+                                Navigator.of(context).pop();
+                              },
+                              widthButton: 10,
+                              textoBoton: 'Volver',
+                              image: Image.asset('assets/images/warning.jpg',
+                                  height: 80),
+                              mensaje: "Las contraseñas no son iguales",
+                              dobleBoton: false,
+                            ),
+                          );
+                          return;
+                        }
+
+                        UsuarioRegistro usuario = UsuarioRegistro(
+                            nombre: nombre,
+                            correo: correo,
+                            contrasena: contrasena);
+                        final response = await serviceProvider.usuarioService
+                            .registrar(usuario);
+
+                        if (response.type == "success") {
+                          showDialog(
+                            // ignore: use_build_context_synchronously
+                            context: context,
+                            builder: (context) => AlertaVolver(
+                              width: 200,
+                              height: 200,
+                              function: () {
+                                setState(() {
+                                  _controllerNombre.clear();
+                                  _controllerEmail.clear();
+                                  _controllerPassword.clear();
+                                  _controllerRepetirPassword.clear();
+                                });
+                                Navigator.of(context).pop();
+                              },
+                              widthButton: 10,
+                              textoBoton: 'Volver',
+                              image: Image.asset('assets/images/success.png',
+                                  height: 80),
+                              mensaje: response.msg,
+                              dobleBoton: false,
+                            ),
+                          );
+                        } else {
+                          showDialog(
+                            // ignore: use_build_context_synchronously
+                            context: context,
+                            builder: (context) => AlertaVolver(
+                              width: 200,
+                              height: 200,
+                              function: () {
+                                Navigator.of(context).pop();
+                              },
+                              widthButton: 10,
+                              textoBoton: 'Volver',
+                              image: Image.asset('assets/images/warning.jpg',
+                                  height: 80),
+                              mensaje: response.msg,
+                              dobleBoton: false,
+                            ),
+                          );
+                        }
                       }),
                   separadorVertical(context, 2),
                   Center(

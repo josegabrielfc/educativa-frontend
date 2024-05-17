@@ -87,20 +87,40 @@ class _LoginPageState extends State<LoginPage> {
                       sizeBorderRadius: 15,
                       duration: 1000,
                       onTap: () async {
+                        if (_controllerPassword.text.isEmpty ||
+                            _controllerEmail.text.isEmpty) {
+                          showDialog(
+                            // ignore: use_build_context_synchronously
+                            context: context,
+                            builder: (context) => AlertaVolver(
+                              width: 200,
+                              height: 200,
+                              function: () {
+                                Navigator.of(context).pop();
+                              },
+                              widthButton: 10,
+                              textoBoton: 'Volver',
+                              image: Image.asset('assets/images/warning.jpg',
+                                  height: 80),
+                              mensaje: "Todos los campos son obligatorios",
+                              dobleBoton: false,
+                            ),
+                          );
+                          return;
+                        }
                         LoginModel loginRequest = LoginModel(
                             contrasena: _controllerPassword.text,
                             correo: _controllerEmail.text);
+
                         final response = await serviceProvider.loginService
                             .login(loginRequest);
                         if (response["type"] == 'success') {
-
-
-                            // ignore: use_build_context_synchronously
-                            final usuarioProvider =
-                                Provider.of<UsuarioProvider>(context,
-                                    listen: false);
-                            usuarioProvider.setToken(response["msg"]["token"]);
-                            usuarioProvider.setUsuario(response["msg"]["usuarioid"]);
+                          // ignore: use_build_context_synchronously
+                          final usuarioProvider = Provider.of<UsuarioProvider>(context,
+                              listen: false);
+                          usuarioProvider.setToken(response["msg"]["token"]);
+                          usuarioProvider
+                              .setUsuario(response["msg"]["usuarioid"]);
 
                           // ignore: use_build_context_synchronously
                           Navigator.pushNamed(context, "home-page");
@@ -125,14 +145,14 @@ class _LoginPageState extends State<LoginPage> {
                           );
                         }
                       }),
-                      separadorVertical(context, 2),
+                  separadorVertical(context, 2),
                   Center(
                     child: InkWell(
-                      onTap: () {
-                         Navigator.pushNamed(context, "signup-page");
-                      },
-                      child: texto("Registrarse", fontBold, mediumSize, azulOscColor, TextAlign.center)
-                        ),
+                        onTap: () {
+                          Navigator.pushNamed(context, "signup-page");
+                        },
+                        child: texto("Registrarse", fontBold, mediumSize,
+                            azulOscColor, TextAlign.center)),
                   ),
                 ],
               ),
