@@ -21,19 +21,15 @@ class _BuildPageState extends State<BuildPage> {
     final navigationItem = provider.sidebarItem;
 
     switch (navigationItem) {
-      case SidebarItem.header:
+      case SidebarItem.logout:
         return const ResultadosPage();
-      case SidebarItem.registrarUsuario:
+        case SidebarItem.resultados:
         return const ResultadosPage();
-      case SidebarItem.estudiantes:
+      case SidebarItem.fundamentos:
         return const ResultadosPage();
-      case SidebarItem.workflow:
+      case SidebarItem.condicionales:
         return const ResultadosPage();
-      case SidebarItem.editarEstudiante:
-        return const ResultadosPage();
-      case SidebarItem.plugins:
-        return const ResultadosPage();
-      case SidebarItem.notifications:
+      case SidebarItem.ciclos:
         return const ResultadosPage();
     }
   }

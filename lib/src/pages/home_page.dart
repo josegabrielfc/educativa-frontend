@@ -68,7 +68,7 @@ class _HomePageState extends State<HomePage> {
                       separadorVertical(context, 2),
                       texto(
                         "Contenidos del OVA",
-                        fontBold,
+                        fontExtraBold,
                         24,
                         azulOscColor,
                         TextAlign.center,

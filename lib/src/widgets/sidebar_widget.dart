@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:educativa_frontend/src/config/environment/environment.dart';
 import 'package:educativa_frontend/src/models/sidebar_item.dart';
 import 'package:educativa_frontend/src/providers/sidebar_provider.dart';
-import 'package:educativa_frontend/src/providers/usuario_provider.dart';
 import 'package:educativa_frontend/src/widgets/widgets_general.dart';
 
 class SidebarWidget extends StatelessWidget {
@@ -13,69 +12,44 @@ class SidebarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    final usuarioProvider =
-        Provider.of<UsuarioProvider>(context, listen: false);
     return Drawer(
       child: Container(
         color: const Color.fromRGBO(142, 142, 142, 1),
         child: ListView(
           children: <Widget>[
-            CustomButton(
-                textButton: "Ver resultados",
-                widthButton: size.width * 0.1,
-                heightButton: size.height * 0.08,
-                size: bigSize,
-                color: negroColor,
-                hoverColor: grisOscColor,
-                duration: 1000),
             Container(
               padding: padding,
               child: Column(
                 children: [
                   const SizedBox(height: 24),
-                  buildMenuItem(
-                    context,
-                    item: SidebarItem.registrarUsuario,
-                    text: 'Registrar Usuario',
-                    icon: Icons.person_add_alt_1,
-                  ),
-                  const SizedBox(height: 16),
-                  buildMenuItem(
-                    context,
-                    item: SidebarItem.estudiantes,
-                    text: 'Estudiantes',
-                    icon: Icons.people,
-                  ),
-                  const SizedBox(height: 16),
-                  buildMenuItem(
-                    context,
-                    item: SidebarItem.workflow,
-                    text: 'Workflow',
-                    icon: Icons.workspaces_outline,
-                  ),
-                  const SizedBox(height: 16),
-                  buildMenuItem(
-                    context,
-                    item: SidebarItem.editarEstudiante,
-                    text: 'Updates',
-                    icon: Icons.update,
-                  ),
-                  const SizedBox(height: 24),
-                  const Divider(color: Colors.white70),
+                  buildHeader(context),
                   const SizedBox(height: 24),
                   buildMenuItem(
                     context,
-                    item: SidebarItem.plugins,
-                    text: 'Plugins',
-                    icon: Icons.account_tree_outlined,
+                    item: SidebarItem.resultados,
+                    text: 'Ver resultados',
+                    icon: Icons.remove_red_eye_outlined,
+                  ),
+                  const SizedBox(height: 24),
+                  buildMenuItem(
+                    context,
+                    item: SidebarItem.fundamentos,
+                    text: '1. Fundamentos del Lenguaje de Programación',
+                    icon: Icons.code,
                   ),
                   const SizedBox(height: 16),
                   buildMenuItem(
                     context,
-                    item: SidebarItem.notifications,
-                    text: 'Notifications',
-                    icon: Icons.notifications_outlined,
+                    item: SidebarItem.condicionales,
+                    text: '2. Bloques Condicionales',
+                    icon: Icons.wysiwyg,
+                  ),
+                  const SizedBox(height: 16),
+                  buildMenuItem(
+                    context,
+                    item: SidebarItem.ciclos,
+                    text: '3. Bloques Iterativos',
+                    icon: Icons.loop,
                   ),
                 ],
               ),
@@ -117,35 +91,26 @@ class SidebarWidget extends StatelessWidget {
     provider.setSidebarItem(item);
   }
 
-  Widget buildHeader(
-    BuildContext context, {
-    required String urlImage,
-    required String name,
-    required String email,
-  }) =>
-      Material(
+  Widget buildHeader(BuildContext context) => Material(
         color: Colors.black12,
         child: InkWell(
-          onTap: () => selectItem(context, SidebarItem.header),
+          onTap: () {
+
+          },
           child: Container(
-            padding: padding.add(const EdgeInsets.symmetric(vertical: 30)),
+            padding: padding.add(const EdgeInsets.symmetric(vertical: 10)),
             child: Row(
               children: [
-                CircleAvatar(
-                    radius: 40, backgroundImage: NetworkImage(urlImage)),
+                const Icon(Icons.logout_rounded),
                 const SizedBox(width: 20),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      name,
+                      "Cerrar sesion",
                       style: TextStyle(fontSize: 20, color: blancoColor),
                     ),
                     const SizedBox(height: 4),
-                    Text(
-                      email,
-                      style: TextStyle(fontSize: 14, color: blancoColor),
-                    ),
                   ],
                 ),
               ],
