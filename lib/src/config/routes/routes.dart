@@ -11,5 +11,10 @@ final router = Router(routes: [
       matcher: Matcher.path(SignupPage.name),
       materialBuilder: (_, __) => const SignupPage(),
     ),
+    Route(
+          matcher: Matcher.path(HomePage.name),
+          materialBuilder: (_, __) => const HomePage(),
+        ),
+
   ])
 ]);

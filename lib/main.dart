@@ -9,14 +9,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
-//import 'package:flutter_webrtc/flutter_webrtc.dart';
 
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  //if (WebRTC.platformIsDesktop) {
-  //debugDefaultTargetPlatformOverride = TargetPlatform.fuchsia;
-  //}
   await initializeDateFormatting('es', null);
   initializeDateFormatting().then((_) => runApp(const AppState()));
   runApp(const AppState());
@@ -36,8 +32,6 @@ class AppState extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => NavigatorProvider()),
         ChangeNotifierProvider(create: (_) => ServicesProvider()),
         ChangeNotifierProvider(create: (_) => UsuarioProvider()), 
-        /*ChangeNotifierProvider(create: (_) => DatosGlobalesProvider()),
-        */
       ],
       child: const MyApp(),
     );
@@ -67,9 +61,6 @@ class MyApp extends StatelessWidget {
         useMaterial3: false,
         colorScheme: const ColorScheme.light().copyWith(primary: azulColor),
       ),
-      /*routes: {
-        'admin-page': (context) => const AppAdmin(),
-      },*/
     );
   }
 }

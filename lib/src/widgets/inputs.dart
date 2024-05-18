@@ -170,6 +170,7 @@ class _CustomPasswordState extends State<CustomPassword> {
         onChanged: widget.onChanged,
         validator: widget.validator,
         obscureText: isEnable,
+        maxLength: 20,
         style: TextStyle(
           fontFamily: fontApp,
           color: widget.hintColor ?? grisClaColor,
