@@ -38,7 +38,7 @@ class _LoginPageState extends State<LoginPage> {
           backgroundColor: Colors.transparent.withOpacity(0.5),
           body: Center(
             child: Container(
-              height: size.height * 0.6,
+              height: size.height * 0.65,
               width:
                   selectDevice(web: 0.35, cel: 0.875, sizeContext: size.width),
               decoration: BoxDecoration(

@@ -31,7 +31,8 @@ class _HomePageState extends State<HomePage> {
             sizeBorderRadius: 15,
             duration: 1000,
             onTap: () async {
-              
+              // ignore: use_build_context_synchronously
+              Navigator.pushNamed(context, "ova-page");
             }),
       ),
       body: Stack(

@@ -1,5 +1,6 @@
+import 'package:educativa_frontend/src/pages/OVA/app_ova.dart';
 import 'package:flutter_deep_linking/flutter_deep_linking.dart';
-import 'package:educativa_frontend/src/pages/pages.dart' ;
+import 'package:educativa_frontend/src/pages/pages.dart';
 
 final router = Router(routes: [
   Route(routes: [
@@ -12,9 +13,12 @@ final router = Router(routes: [
       materialBuilder: (_, __) => const SignupPage(),
     ),
     Route(
-          matcher: Matcher.path(HomePage.name),
-          materialBuilder: (_, __) => const HomePage(),
-        ),
-
+      matcher: Matcher.path(HomePage.name),
+      materialBuilder: (_, __) => const HomePage(),
+    ),
+    Route(
+      matcher: Matcher.path(AppOvaPage.name),
+      materialBuilder: (_, __) => const AppOvaPage(),
+    ),
   ])
 ]);
