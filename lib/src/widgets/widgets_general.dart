@@ -47,22 +47,21 @@ class CustomButton extends StatefulWidget {
   late Color? borderColor;
   late Color? textColor;
   late double? sizeBorderRadius;
-  CustomButton({
-    super.key,
-    required this.textButton,
-    required this.widthButton,
-    required this.heightButton,
-    required this.size,
-    required this.color,
-    required this.hoverColor,
-    required this.duration,
-    this.icono,
-    this.image,
-    this.onTap,
-    this.borderColor,
-    this.textColor,
-    this.sizeBorderRadius
-  }){
+  CustomButton(
+      {super.key,
+      required this.textButton,
+      required this.widthButton,
+      required this.heightButton,
+      required this.size,
+      required this.color,
+      required this.hoverColor,
+      required this.duration,
+      this.icono,
+      this.image,
+      this.onTap,
+      this.borderColor,
+      this.textColor,
+      this.sizeBorderRadius}) {
     borderColor = borderColor ?? Colors.transparent;
     textColor = textColor ?? blancoColor;
     sizeBorderRadius = sizeBorderRadius ?? 35.0;
@@ -98,7 +97,8 @@ class _CustomButtonState extends State<CustomButton> {
               offset: const Offset(4, 4),
             ),
           ],
-          borderRadius: BorderRadius.all(Radius.circular(widget.sizeBorderRadius!)),
+          borderRadius:
+              BorderRadius.all(Radius.circular(widget.sizeBorderRadius!)),
           border: Border.all(
             color: widget.borderColor!,
             width: (widget.borderColor != null) ? 1.5 : 0,
@@ -135,6 +135,7 @@ class _CustomButtonState extends State<CustomButton> {
     );
   }
 }
+
 class AlertaVolver extends StatefulWidget {
   /// Ancho de la ventana de alerta en porcentaje respecto al ancho de la pantalla.
   final double width;
@@ -262,6 +263,7 @@ Widget botonCancelar(
     )),
   );
 }
+
 Widget botonAceptar(
     BuildContext context, widthButton, heightButton, textButton, size,
     [Color? colorBtn]) {

@@ -65,7 +65,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       separadorVertical(context, 1),
                       SizedBox(
-                        width: size.width * 0.4,
+                        width: size.width * 0.6,
                         child: texto(
                           "El objetivo de este OVA es brindar una introducción al mundo de la programación. A través de sus fundamentos, aprenderás los conceptos básicos y las habilidades esenciales que te permitirán entender y escribir tus propios programas.",
                           fontApp,

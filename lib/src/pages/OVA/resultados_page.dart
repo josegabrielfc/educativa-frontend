@@ -58,7 +58,7 @@ class _ResultadosPageState extends State<ResultadosPage> {
           columnWidths: {
             0: FixedColumnWidth(media.width * 17.4 / 100),
             1: FixedColumnWidth(media.width * 31.6 / 100),
-            2: FixedColumnWidth(media.width * 7.4 / 100),
+            2: FixedColumnWidth(media.width * 9.4 / 100),
           },
           border: TableBorder.all(
               color: Colors.transparent, style: BorderStyle.none),
@@ -102,13 +102,13 @@ class _ResultadosPageState extends State<ResultadosPage> {
           ],
         ),
         SizedBox(
-          height: media.height * 20 / 100,
+          height: media.height * 30 / 100,
           child: SingleChildScrollView(
             child: Table(
               columnWidths: {
                 0: FixedColumnWidth(media.width * 17.4 / 100),
                 1: FixedColumnWidth(media.width * 31.6 / 100),
-                2: FixedColumnWidth(media.width * 7.4 / 100),
+                2: FixedColumnWidth(media.width * 9.4 / 100),
               },
               defaultVerticalAlignment: TableCellVerticalAlignment.middle,
               border: TableBorder.all(
@@ -165,14 +165,17 @@ class _ResultadosPageState extends State<ResultadosPage> {
 
     return Scaffold(
         drawer: const SidebarWidget(),
+        appBar:  AppBar(
+          backgroundColor:  const Color(0xFFC2F8FA)
+        ),
         body: Stack(children: [
           Scaffold(
-              backgroundColor: Colors.transparent.withOpacity(0.2),
+              backgroundColor: Colors.transparent.withOpacity(0.1),
               body: Column(children: [
                 Image.asset(
                   'images/background.png',
                   width: size.width,
-                  height: size.height * 0.4,
+                  height: size.height * 0.3,
                   fit: BoxFit.cover,
                 ),
                 separadorVertical(context, 2),
