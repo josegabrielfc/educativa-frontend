@@ -37,22 +37,12 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Stack(
         children: [
-          Container(
-            width: size.width,
-            height: size.height,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('images/background.png'),
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
           Scaffold(
             backgroundColor: Colors.transparent.withOpacity(0.5),
             body: Column(
               children: [
                 Image.asset(
-                  'images/background.png', // Reemplaza con la ruta de tu imagen
+                  'images/background.png',
                   width: size.width,
                   height: size.height * 0.4,
                   fit: BoxFit.cover,
