@@ -116,6 +116,7 @@ class _EstructuraPageState extends State<EstructuraPage> {
                                 endIndent:
                                     2, // Espaciado desde el borde derecho
                               ),
+                              separadorVertical(context, 2),
                               RichText(
                                 textAlign: TextAlign.justify,
                                 text: TextSpan(
@@ -149,7 +150,7 @@ class _EstructuraPageState extends State<EstructuraPage> {
                                       children: [
                                         texto("En Python", fontApp, bigSize,
                                             negroColor, TextAlign.center),
-                                        Image.asset("images/comentario2.png")
+                                        Image.asset("images/fundamentos/comentario2.png")
                                       ],
                                     ),
                                   ),
@@ -160,7 +161,7 @@ class _EstructuraPageState extends State<EstructuraPage> {
                                       children: [
                                         texto("En C++", fontApp, bigSize,
                                             negroColor, TextAlign.center),
-                                        Image.asset("images/comentario1.png")
+                                        Image.asset("images/fundamentos/comentario1.png")
                                       ],
                                     ),
                                   ),
@@ -171,12 +172,13 @@ class _EstructuraPageState extends State<EstructuraPage> {
                                       children: [
                                         texto("En Java", fontApp, bigSize,
                                             negroColor, TextAlign.center),
-                                        Image.asset("images/comentario1.png")
+                                        Image.asset("images/fundamentos/comentario1.png")
                                       ],
                                     ),
                                   )
                                 ],
                               ),
+                              separadorVertical(context, 2),
                               Divider(
                                 color: azulClaColor, // Color de la línea
                                 thickness: 1, // Grosor de la línea
@@ -184,6 +186,7 @@ class _EstructuraPageState extends State<EstructuraPage> {
                                 endIndent:
                                     2, // Espaciado desde el borde derecho
                               ),
+                              separadorVertical(context, 2),
                               RichText(
                                 textAlign: TextAlign.justify,
                                 text: TextSpan(
@@ -221,7 +224,7 @@ class _EstructuraPageState extends State<EstructuraPage> {
                                             bigSize,
                                             negroColor,
                                             TextAlign.center),
-                                        Image.asset("images/declaracion2.png", height: 200,)
+                                        Image.asset("images/fundamentos/declaracion2.png", height: 200,)
                                       ],
                                     ),
                                   ),
@@ -236,7 +239,7 @@ class _EstructuraPageState extends State<EstructuraPage> {
                                             bigSize,
                                             negroColor,
                                             TextAlign.center),
-                                        Image.asset("images/declaracion1.png", height: 200,)
+                                        Image.asset("images/fundamentos/declaracion1.png", height: 200,)
                                       ],
                                     ),
                                   ),
@@ -251,12 +254,13 @@ class _EstructuraPageState extends State<EstructuraPage> {
                                             bigSize,
                                             negroColor,
                                             TextAlign.center),
-                                        Image.asset("images/declaracion1.png", height: 200,)
+                                        Image.asset("images/fundamentos/declaracion1.png", height: 200,)
                                       ],
                                     ),
                                   )
                                 ],
                               ),
+                              separadorVertical(context, 2),
                               Divider(
                                 color: azulClaColor, // Color de la línea
                                 thickness: 1, // Grosor de la línea
@@ -264,6 +268,7 @@ class _EstructuraPageState extends State<EstructuraPage> {
                                 endIndent:
                                     2, // Espaciado desde el borde derecho
                               ),
+                              separadorVertical(context, 2),
                               RichText(
                                 textAlign: TextAlign.justify,
                                 text: TextSpan(
@@ -304,7 +309,7 @@ class _EstructuraPageState extends State<EstructuraPage> {
                                             negroColor,
                                             TextAlign.center),
                                         Image.asset(
-                                          "images/principal-python.png",
+                                          "images/fundamentos/principal-python.png",
                                           width: 400,
                                         ),
                                       ],
@@ -318,7 +323,7 @@ class _EstructuraPageState extends State<EstructuraPage> {
                                         texto("En C++:", fontApp, bigSize,
                                             negroColor, TextAlign.center),
                                         Image.asset(
-                                          "images/principal-c.png",
+                                          "images/fundamentos/principal-c.png",
                                           width: 400,
                                         ),
                                       ],
@@ -332,7 +337,7 @@ class _EstructuraPageState extends State<EstructuraPage> {
                                         texto("En Java:", fontApp, bigSize,
                                             negroColor, TextAlign.center),
                                         Image.asset(
-                                          "images/principal-java.png",
+                                          "images/fundamentos/principal-java.png",
                                           width: 400,
                                         ),
                                       ],

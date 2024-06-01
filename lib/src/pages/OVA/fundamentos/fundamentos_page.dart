@@ -114,7 +114,7 @@ class _FundamentosPageState extends State<FundamentosPage> {
                       ),
                     ),
                     separadorVertical(context, 2),
-                    Image.asset("images/lenguajes.png"),
+                    Image.asset("images/fundamentos/lenguajes.png"),
                     separadorVertical(context, 2),
                   ]),
                 ),

@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: title,
       onGenerateRoute: router.onGenerateRoute,
-      initialRoute: 'login-page',
+      initialRoute: 'ova-page',
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,

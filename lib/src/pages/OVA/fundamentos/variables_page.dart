@@ -38,7 +38,7 @@ class _VariablesPageState extends State<VariablesPage> {
               onTap: () async {
                 final provider =
                     Provider.of<SidebarProvider>(context, listen: false);
-                provider.setSidebarItem(SidebarItem.variables);
+                provider.setSidebarItem(SidebarItem.entradaSalida);
               }),
         ),
         body: Stack(children: [
@@ -72,6 +72,13 @@ class _VariablesPageState extends State<VariablesPage> {
                               bigSize,
                               negroColor,
                               TextAlign.justify),
+                          separadorVertical(context, 2),
+                          Divider(
+                            color: azulClaColor, // Color de la línea
+                            thickness: 1, // Grosor de la línea
+                            indent: 2, // Espaciado desde el borde izquierdo
+                            endIndent: 2, // Espaciado desde el borde derecho
+                          ),
                           separadorVertical(context, 2),
                           texto("Variables", fontApp, bigSize, azulOscColor,
                               TextAlign.start),
@@ -121,7 +128,7 @@ class _VariablesPageState extends State<VariablesPage> {
                                     texto("Ejemplo en Python", fontApp, bigSize,
                                         negroColor, TextAlign.center),
                                     Image.asset(
-                                      "images/declaracion2.png",
+                                      "images/fundamentos/declaracion2.png",
                                       height: 200,
                                     )
                                   ],
@@ -135,7 +142,7 @@ class _VariablesPageState extends State<VariablesPage> {
                                     texto("Ejemplo en C++", fontApp, bigSize,
                                         negroColor, TextAlign.center),
                                     Image.asset(
-                                      "images/declaracion1.png",
+                                      "images/fundamentos/declaracion1.png",
                                       height: 200,
                                     )
                                   ],
@@ -149,7 +156,7 @@ class _VariablesPageState extends State<VariablesPage> {
                                     texto("Ejemplo en Java", fontApp, bigSize,
                                         negroColor, TextAlign.center),
                                     Image.asset(
-                                      "images/declaracion1.png",
+                                      "images/fundamentos/declaracion1.png",
                                       height: 200,
                                     )
                                   ],
@@ -185,7 +192,7 @@ class _VariablesPageState extends State<VariablesPage> {
                                     texto("Ejemplos validos", fontApp, bigSize,
                                         negroColor, TextAlign.center),
                                     Image.asset(
-                                      "images/identificador1.png",
+                                      "images/fundamentos/identificador1.png",
                                       width: 300,
                                     ),
                                   ],
@@ -199,7 +206,7 @@ class _VariablesPageState extends State<VariablesPage> {
                                     texto("Ejemplos invalidos", fontApp,
                                         bigSize, negroColor, TextAlign.center),
                                     Image.asset(
-                                      "images/identificador2.png",
+                                      "images/fundamentos/identificador2.png",
                                       width: 300,
                                     ),
                                   ],
@@ -225,10 +232,14 @@ class _VariablesPageState extends State<VariablesPage> {
                                 width: size.width * 0.35,
                                 child: Column(
                                   children: [
-                                    texto("Enteros (int): Números sin decimales.", fontApp, bigSize,
-                                        negroColor, TextAlign.center),
+                                    texto(
+                                        "Enteros (int): Números sin decimales.",
+                                        fontApp,
+                                        bigSize,
+                                        negroColor,
+                                        TextAlign.center),
                                     Image.asset(
-                                      "images/tipo-dato1.png",
+                                      "images/fundamentos/tipo-dato1.png",
                                       width: 300,
                                     ),
                                   ],
@@ -239,10 +250,14 @@ class _VariablesPageState extends State<VariablesPage> {
                                 width: size.width * 0.35,
                                 child: Column(
                                   children: [
-                                    texto("Flotantes (float, double): Números con decimales.", fontApp,
-                                        bigSize, negroColor, TextAlign.center),
+                                    texto(
+                                        "Flotantes (float, double): Números con decimales.",
+                                        fontApp,
+                                        bigSize,
+                                        negroColor,
+                                        TextAlign.center),
                                     Image.asset(
-                                      "images/tipo-dato2.png",
+                                      "images/fundamentos/tipo-dato2.png",
                                       width: 300,
                                     ),
                                   ],
@@ -259,10 +274,14 @@ class _VariablesPageState extends State<VariablesPage> {
                                 width: size.width * 0.35,
                                 child: Column(
                                   children: [
-                                    texto("Cadenas de texto (str, string): Secuencias de caracteres.", fontApp, bigSize,
-                                        negroColor, TextAlign.center),
+                                    texto(
+                                        "Cadenas de texto (str, string): Secuencias de caracteres.",
+                                        fontApp,
+                                        bigSize,
+                                        negroColor,
+                                        TextAlign.center),
                                     Image.asset(
-                                      "images/tipo-dato3.png",
+                                      "images/fundamentos/tipo-dato3.png",
                                       width: 300,
                                     ),
                                   ],
@@ -273,10 +292,14 @@ class _VariablesPageState extends State<VariablesPage> {
                                 width: size.width * 0.35,
                                 child: Column(
                                   children: [
-                                    texto("Booleanos (bool): Valores de verdadero o falso.", fontApp,
-                                        bigSize, negroColor, TextAlign.center),
+                                    texto(
+                                        "Booleanos (bool): Valores de verdadero o falso.",
+                                        fontApp,
+                                        bigSize,
+                                        negroColor,
+                                        TextAlign.center),
                                     Image.asset(
-                                      "images/tipo-dato4.png",
+                                      "images/fundamentos/tipo-dato4.png",
                                       width: 300,
                                     ),
                                   ],
