@@ -27,13 +27,13 @@ class _FundamentosPageState extends State<FundamentosPage> {
         floatingActionButton: Container(
           alignment: Alignment.topLeft,
           padding:
-              EdgeInsets.only(left: size.width * 0.11, top: 20),
+              const EdgeInsets.only(left: 80, top: 20),
           child: CustomButton(
               color: azulOscColor,
               hoverColor: azulClaColor,
               size: bigSize + 4,
               textButton: 'Siguiente',
-              heightButton: size.height * 0.065,
+              heightButton: 45,
               widthButton:
                   selectDevice(web: 0.22, cel: 0.64, sizeContext: size.width),
               sizeBorderRadius: 15,

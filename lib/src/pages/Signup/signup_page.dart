@@ -66,7 +66,7 @@ class _SignupPageState extends State<SignupPage> {
                       sizeMaxLength: 50,
                     ),
                   ),
-                  separadorVertical(context, 4.5),
+                  separadorVertical(context, 3),
                   Form(
                     child: CustomTextFormField(
                       sizeBorderRadius: 10,
@@ -80,7 +80,7 @@ class _SignupPageState extends State<SignupPage> {
                       sizeMaxLength: 50,
                     ),
                   ),
-                  separadorVertical(context, 6),
+                  separadorVertical(context, 3),
                   Form(
                     child: CustomPassword(
                       sizeBorderRadius: 10,
@@ -93,7 +93,7 @@ class _SignupPageState extends State<SignupPage> {
                       controller: _controllerPassword,
                     ),
                   ),
-                  separadorVertical(context, 6),
+                  separadorVertical(context, 3),
                   Form(
                     child: CustomPassword(
                       sizeBorderRadius: 10,
@@ -106,7 +106,7 @@ class _SignupPageState extends State<SignupPage> {
                       controller: _controllerRepetirPassword,
                     ),
                   ),
-                  separadorVertical(context, 7.5),
+                  separadorVertical(context, 4),
                   CustomButton(
                       color: azulOscColor,
                       hoverColor: azulClaColor,
