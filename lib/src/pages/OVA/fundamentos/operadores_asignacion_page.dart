@@ -283,6 +283,69 @@ class _OperadoresAsignacionPageState extends State<OperadoresAsignacionPage> {
                             endIndent: 2, // Espaciado desde el borde derecho
                           ),
                           separadorVertical(context, 2),
+                          texto("Precedencia de Operadores", fontApp, bigSize,
+                              azulOscColor, TextAlign.center),
+                          separadorVertical(context, 1),
+                          RichText(
+                            textAlign: TextAlign.justify,
+                            text: TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: "Orden de operaciones: ",
+                                  style: TextStyle(
+                                    fontFamily: fontExtraBold,
+                                    fontSize: bigSize,
+                                    color: negroColor,
+                                  ),
+                                ),
+                                TextSpan(
+                                  text:
+                                      "En matemáticas y en programación, el orden de operaciones es fundamental.",
+                                  style: TextStyle(
+                                    fontFamily: fontApp,
+                                    fontSize: bigSize,
+                                    color: negroColor,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          separadorVertical(context, 1),
+                          Column(
+                            children: [
+                              texto(
+                                  "Primero se realizan las operaciones entre paréntesis.",
+                                  fontApp,
+                                  bigSize,
+                                  negroColor,
+                                  TextAlign.center),
+                              separadorVertical(context, 1),
+                              texto(
+                                  "Luego multiplicaciones y divisiones.",
+                                  fontApp,
+                                  bigSize,
+                                  negroColor,
+                                  TextAlign.center),
+                              separadorVertical(context, 1),
+                              texto(
+                                  "Luego multiplicaciones y divisiones.",
+                                  fontApp,
+                                  bigSize,
+                                  negroColor,
+                                  TextAlign.center),
+                              separadorVertical(context, 1),
+                              texto("Ejemplo: resultado = (a + b) * c", fontApp,
+                                  bigSize, negroColor, TextAlign.center),
+                            ],
+                          ),
+                          separadorVertical(context, 2),
+                          Divider(
+                            color: azulClaColor, // Color de la línea
+                            thickness: 1, // Grosor de la línea
+                            indent: 2, // Espaciado desde el borde izquierdo
+                            endIndent: 2, // Espaciado desde el borde derecho
+                          ),
+                          separadorVertical(context, 2),
                         ]))
                   ]))))
         ]));
