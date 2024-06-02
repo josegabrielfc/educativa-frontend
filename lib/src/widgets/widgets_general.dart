@@ -283,3 +283,59 @@ Widget botonAceptar(
     )),
   );
 }
+
+class Pregunta extends StatefulWidget {
+  final String pregunta;
+  final List<String> respuestas;
+  final Color colorActivo;
+  final Function(int) onRespuestaSeleccionada;
+
+  const Pregunta({
+    super.key,
+    required this.pregunta,
+    required this.respuestas,
+    required this.colorActivo,
+    required this.onRespuestaSeleccionada,
+  });
+
+  @override
+  _PreguntaState createState() => _PreguntaState();
+}
+
+class _PreguntaState extends State<Pregunta> {
+  int? _selectedRespuesta;
+
+  void _handleAnswerTap(int value) {
+    setState(() {
+      _selectedRespuesta = value;
+    });
+    widget.onRespuestaSeleccionada(value);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        texto(widget.pregunta, fontApp, bigSize, negroColor, TextAlign.center),
+        Column(
+          children: List.generate(widget.respuestas.length, (index) {
+            return ListTile(
+              title: Text(widget.respuestas[index]),
+              leading: Radio(
+                activeColor: widget.colorActivo,
+                value: index,
+                groupValue: _selectedRespuesta,
+                onChanged: (int? value) {
+                  if (value != null) {
+                    _handleAnswerTap(value);
+                  }
+                },
+              ),
+            );
+          }),
+        ),
+      ],
+    );
+  }
+}

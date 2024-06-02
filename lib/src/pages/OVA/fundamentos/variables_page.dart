@@ -1,6 +1,7 @@
 import 'package:educativa_frontend/src/config/environment/environment.dart';
 import 'package:educativa_frontend/src/models/sidebar_item.dart';
 import 'package:educativa_frontend/src/providers/sidebar_provider.dart';
+import 'package:educativa_frontend/src/widgets/inputs.dart';
 import 'package:educativa_frontend/src/widgets/sidebar_widget.dart';
 import 'package:educativa_frontend/src/widgets/widgets_general.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,14 @@ class VariablesPage extends StatefulWidget {
 }
 
 class _VariablesPageState extends State<VariablesPage> {
+  bool actividad = false;
+  final TextEditingController _controllerIntC = TextEditingController();
+  final TextEditingController _controllerFloatC = TextEditingController();
+  final TextEditingController _controllerCharC = TextEditingController();
+  final TextEditingController _controllerIntJava = TextEditingController();
+  final TextEditingController _controllerFloatJava = TextEditingController();
+  final TextEditingController _controllerStringJava = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -307,6 +316,284 @@ class _VariablesPageState extends State<VariablesPage> {
                               ),
                             ],
                           ),
+                          separadorVertical(context, 2),
+                          Divider(
+                            color: azulClaColor, // Color de la línea
+                            thickness: 1, // Grosor de la línea
+                            indent: 2, // Espaciado desde el borde izquierdo
+                            endIndent: 2, // Espaciado desde el borde derecho
+                          ),
+                          separadorVertical(context, 2),
+                          CustomButton(
+                              color: azulOscColor,
+                              hoverColor: azulClaColor,
+                              size: bigSize + 4,
+                              textButton: 'Realizar actividad',
+                              heightButton: 45,
+                              widthButton: selectDevice(
+                                  web: 0.22,
+                                  cel: 0.64,
+                                  sizeContext: size.width),
+                              sizeBorderRadius: 15,
+                              duration: 1000,
+                              onTap: () {
+                                setState(() {
+                                  actividad = !actividad;
+                                });
+                              }),
+                          actividad
+                              ? Column(
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        separadorVertical(context, 1),
+                                        SizedBox(
+                                          width: size.width * 0.35,
+                                          child: Column(
+                                            children: [
+                                              texto(
+                                                  "Completa la declaración de las siguientes variables usando el lenguaje de programación C++",
+                                                  fontApp,
+                                                  bigSize,
+                                                  negroColor,
+                                                  TextAlign.center),
+                                              separadorVertical(context, 1),
+                                              Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  texto(
+                                                      "int main()",
+                                                      fontApp,
+                                                      bigSize,
+                                                      negroColor,
+                                                      TextAlign.start),
+                                                  texto(
+                                                      "{",
+                                                      fontApp,
+                                                      bigSize,
+                                                      negroColor,
+                                                      TextAlign.start),
+                                                  Row(children: [
+                                                    texto(
+                                                        "   int edad = ",
+                                                        fontApp,
+                                                        bigSize,
+                                                        negroColor,
+                                                        TextAlign.start),
+                                                    CustomTextFormField(
+                                                      controller:
+                                                          _controllerIntC,
+                                                      width: 70,
+                                                      height: 10,
+                                                      borderColor: azulClaColor,
+                                                      sizeMaxLength: 3,
+                                                    ),
+                                                    texto(
+                                                        ";",
+                                                        fontApp,
+                                                        bigSize,
+                                                        negroColor,
+                                                        TextAlign.start),
+                                                  ]),
+                                                  separadorVertical(context, 1),
+                                                  Row(children: [
+                                                    texto(
+                                                        "   float altura = ",
+                                                        fontApp,
+                                                        bigSize,
+                                                        negroColor,
+                                                        TextAlign.start),
+                                                    CustomTextFormField(
+                                                      controller:
+                                                          _controllerFloatC,
+                                                      width: 70,
+                                                      height: 10,
+                                                      borderColor: azulClaColor,
+                                                      sizeMaxLength: 3,
+                                                    ),
+                                                    texto(
+                                                        ";",
+                                                        fontApp,
+                                                        bigSize,
+                                                        negroColor,
+                                                        TextAlign.start),
+                                                  ]),
+                                                  separadorVertical(context, 1),
+                                                  Row(children: [
+                                                    texto(
+                                                        "   char caracter = '",
+                                                        fontApp,
+                                                        bigSize,
+                                                        negroColor,
+                                                        TextAlign.start),
+                                                    CustomTextFormField(
+                                                      controller:
+                                                          _controllerCharC,
+                                                      width: 70,
+                                                      height: 10,
+                                                      borderColor: azulClaColor,
+                                                      sizeMaxLength: 3,
+                                                    ),
+                                                    texto(
+                                                        "';",
+                                                        fontApp,
+                                                        bigSize,
+                                                        negroColor,
+                                                        TextAlign.start),
+                                                  ]),
+                                                  texto(
+                                                      "}",
+                                                      fontApp,
+                                                      bigSize,
+                                                      negroColor,
+                                                      TextAlign.start),
+                                                ],
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                        separadorHorizontal(context, 2),
+                                        SizedBox(
+                                          width: size.width * 0.35,
+                                          child: Column(
+                                            children: [
+                                              texto(
+                                                  "Completa el tipo de dato de las siguientes variables usando el lenguaje de programación Java",
+                                                  fontApp,
+                                                  bigSize,
+                                                  negroColor,
+                                                  TextAlign.center),
+                                              separadorVertical(context, 1),
+                                              Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  texto(
+                                                      "public class Main",
+                                                      fontApp,
+                                                      bigSize,
+                                                      negroColor,
+                                                      TextAlign.start),
+                                                  texto(
+                                                      "{",
+                                                      fontApp,
+                                                      bigSize,
+                                                      negroColor,
+                                                      TextAlign.start),
+                                                  texto(
+                                                      "   public static void main(String[] args) {",
+                                                      fontApp,
+                                                      bigSize,
+                                                      negroColor,
+                                                      TextAlign.start),
+                                                  Row(children: [
+                                                    texto(
+                                                        "       ",
+                                                        fontApp,
+                                                        bigSize,
+                                                        negroColor,
+                                                        TextAlign.start),
+                                                    CustomTextFormField(
+                                                      controller:
+                                                          _controllerIntJava,
+                                                      width: 70,
+                                                      height: 10,
+                                                      borderColor: azulClaColor,
+                                                      sizeMaxLength: 3,
+                                                    ),
+                                                    texto(
+                                                        " edad = 25;",
+                                                        fontApp,
+                                                        bigSize,
+                                                        negroColor,
+                                                        TextAlign.start),
+                                                  ]),
+                                                  separadorVertical(context, 1),
+                                                  Row(children: [
+                                                    texto(
+                                                        "       ",
+                                                        fontApp,
+                                                        bigSize,
+                                                        negroColor,
+                                                        TextAlign.start),
+                                                    CustomTextFormField(
+                                                      controller:
+                                                          _controllerFloatJava,
+                                                      width: 70,
+                                                      height: 10,
+                                                      borderColor: azulClaColor,
+                                                      sizeMaxLength: 3,
+                                                    ),
+                                                    texto(
+                                                        " altura = 1.90;",
+                                                        fontApp,
+                                                        bigSize,
+                                                        negroColor,
+                                                        TextAlign.start),
+                                                  ]),
+                                                  separadorVertical(context, 1),
+                                                  Row(children: [
+                                                    texto(
+                                                        "       ",
+                                                        fontApp,
+                                                        bigSize,
+                                                        negroColor,
+                                                        TextAlign.start),
+                                                    CustomTextFormField(
+                                                      controller:
+                                                          _controllerStringJava,
+                                                      width: 70,
+                                                      height: 10,
+                                                      borderColor: azulClaColor,
+                                                      sizeMaxLength: 3,
+                                                    ),
+                                                    texto(
+                                                        ' nombre ="Juan Carlos";',
+                                                        fontApp,
+                                                        bigSize,
+                                                        negroColor,
+                                                        TextAlign.start),
+                                                  ]),
+                                                  texto(
+                                                      "   }",
+                                                      fontApp,
+                                                      bigSize,
+                                                      negroColor,
+                                                      TextAlign.start),
+                                                  texto(
+                                                      "}",
+                                                      fontApp,
+                                                      bigSize,
+                                                      negroColor,
+                                                      TextAlign.start),
+                                                ],
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    separadorVertical(context, 1),
+                                    CustomButton(
+                                        color: azulOscColor,
+                                        hoverColor: azulClaColor,
+                                        size: bigSize + 4,
+                                        textButton: 'Enviar',
+                                        heightButton: 45,
+                                        widthButton: selectDevice(
+                                            web: 0.22,
+                                            cel: 0.64,
+                                            sizeContext: size.width),
+                                        sizeBorderRadius: 15,
+                                        duration: 1000,
+                                        onTap: () {}),
+                                  ],
+                                )
+                              : Container(),
+                          separadorVertical(context, 2),
                           Divider(
                             color: azulClaColor, // Color de la línea
                             thickness: 1, // Grosor de la línea

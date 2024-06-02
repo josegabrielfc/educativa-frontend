@@ -80,6 +80,7 @@ class CustomTextFormField extends StatelessWidget {
         validator: validator,
         obscureText: obscureText,
         decoration: InputDecoration(
+          counterText: '',
           fillColor: readOnly == true ? grisTransColor : blancoColor,
           contentPadding:
               EdgeInsets.symmetric(vertical: height / 2, horizontal: 20),

@@ -15,9 +15,57 @@ class EntradaSalidaPage extends StatefulWidget {
 }
 
 class _EntradaSalidaPageState extends State<EntradaSalidaPage> {
+  bool actividad = false;
+
+  int? _selectedRespuesta1;
+  int? _selectedRespuesta2;
+  int? _selectedRespuesta3;
+
+  @override
+  void initState() {
+    super.initState();
+    loadData();
+  }
+
+  void loadData() {
+    setState(() {
+      _selectedRespuesta1 = -1;
+      _selectedRespuesta2 = -1;
+      _selectedRespuesta3 = -1;
+    });
+  }
+
+  void _handleRespuesta(int index, Function(int) updateSelected) {
+    setState(() {
+      updateSelected(index);
+    });
+  }
+
+  void _validarRespuestas() async {
+    List<int> respuestasCorrectas = [1, 1, 0, 0];
+    double puntaje = 0;
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+
+    List<String> respuestas1 = ["A) print()", "B) cout", "C) cin", "D) scanf"];
+
+    List<String> respuestas2 = [
+      "A) System.out.print()",
+      "B) Console.read()",
+      "C) Input.read()",
+      "D) System.in.read()"
+    ];
+
+    List<String> respuestas3 = [
+      "A) input()",
+      "B) read()",
+      "C) scanf()",
+      "D) cin"
+    ];
+
     return Scaffold(
       drawer: const SidebarWidget(),
       appBar: AppBar(backgroundColor: const Color(0xFFC2F8FA)),
@@ -214,6 +262,112 @@ class _EntradaSalidaPageState extends State<EntradaSalidaPage> {
                             ),
                           ],
                         ),
+                        separadorVertical(context, 2),
+                        Divider(
+                          color: azulClaColor, // Color de la línea
+                          thickness: 1, // Grosor de la línea
+                          indent: 2, // Espaciado desde el borde izquierdo
+                          endIndent: 2, // Espaciado desde el borde derecho
+                        ),
+                        separadorVertical(context, 2),
+                        CustomButton(
+                            color: azulOscColor,
+                            hoverColor: azulClaColor,
+                            size: bigSize + 4,
+                            textButton: 'Realizar actividad',
+                            heightButton: 45,
+                            widthButton: selectDevice(
+                                web: 0.22, cel: 0.64, sizeContext: size.width),
+                            sizeBorderRadius: 15,
+                            duration: 1000,
+                            onTap: () {
+                              setState(() {
+                                actividad = !actividad;
+                              });
+                            }),
+                        actividad
+                            ? Column(
+                                children: [
+                                  texto("Preguntas de selección", fontBold, 20,
+                                      negroColor, TextAlign.center),
+                                  separadorVertical(context, 1),
+                                  Pregunta(
+                                    pregunta:
+                                        "1. ¿Cuál es la instrucción en C++ para leer una entrada desde el teclado?",
+                                    respuestas: respuestas1,
+                                    colorActivo: azulOscColor,
+                                    onRespuestaSeleccionada: (int index) {
+                                      _handleRespuesta(index, (newValue) {
+                                        _selectedRespuesta1 = newValue;
+                                      });
+                                    },
+                                  ),
+                                  separadorVertical(context, 1),
+                                  Pregunta(
+                                    pregunta:
+                                        "2. ¿Qué función se utiliza en Java para mostrar una salida en la consola?",
+                                    respuestas: respuestas2,
+                                    colorActivo: azulOscColor,
+                                    onRespuestaSeleccionada: (int index) {
+                                      _handleRespuesta(index, (newValue) {
+                                        _selectedRespuesta3 = newValue;
+                                      });
+                                    },
+                                  ),
+                                  separadorVertical(context, 1),
+                                  Pregunta(
+                                    pregunta:
+                                        "3. ¿Cómo se lee una entrada del usuario en Python?",
+                                    respuestas: respuestas3,
+                                    colorActivo: azulOscColor,
+                                    onRespuestaSeleccionada: (int index) {
+                                      _handleRespuesta(index, (newValue) {
+                                        _selectedRespuesta3 = newValue;
+                                      });
+                                    },
+                                  ),
+                                  separadorVertical(context, 1),
+                                  CustomButton(
+                                      color: azulOscColor,
+                                      hoverColor: azulClaColor,
+                                      size: bigSize + 4,
+                                      textButton: 'Enviar',
+                                      heightButton: 45,
+                                      widthButton: selectDevice(
+                                          web: 0.22,
+                                          cel: 0.64,
+                                          sizeContext: size.width),
+                                      sizeBorderRadius: 15,
+                                      duration: 1000,
+                                      onTap: () {
+                                        if (_selectedRespuesta1 == -1 ||
+                                            _selectedRespuesta2 == -1 ||
+                                            _selectedRespuesta3 == -1) {
+                                          showDialog(
+                                            context: context,
+                                            builder: (context) => AlertaVolver(
+                                              width: 250,
+                                              height: 200,
+                                              function: () {
+                                                Navigator.of(context).pop();
+                                              },
+                                              widthButton: 10,
+                                              textoBoton: 'Volver',
+                                              image: Image.asset(
+                                                  'assets/images/warning.jpg',
+                                                  height: 80),
+                                              mensaje:
+                                                  "Debes responder todas las preguntas",
+                                              dobleBoton: false,
+                                            ),
+                                          );
+                                          return;
+                                        }
+                                        _validarRespuestas();
+                                      }),
+                                ],
+                              )
+                            : Container(),
                         separadorVertical(context, 2),
                         Divider(
                           color: azulClaColor, // Color de la línea
