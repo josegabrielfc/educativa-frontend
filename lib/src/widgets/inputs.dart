@@ -352,3 +352,68 @@ class DropdownBuscador<T> extends StatelessWidget {
     );
   }
 }
+
+class GenericDropdown<T> extends StatelessWidget {
+  final double width;
+  final double heigth;
+  final T? value;
+  final String hint;
+  final ValueChanged<T?>? onChanged;
+  final List<T> items;
+
+  const GenericDropdown({
+    super.key,
+    required this.value,
+    required this.onChanged,
+    required this.items,
+    required this.width,
+    required this.heigth,
+    required this.hint,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final media = MediaQuery.of(context).size;
+    return Container(
+      alignment: Alignment.center,
+      width: width,
+      height: heigth,
+      decoration: BoxDecoration(
+        border: Border.all(
+            width: 0.5, color: items.isNotEmpty ? azulOscColor : grisClaColor),
+        borderRadius: BorderRadius.circular(media.width * 3 / 100),
+        color: Colors.white,
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: DropdownButton<T>(
+          value: value,
+          onChanged: onChanged,
+          iconSize: 30,
+          iconDisabledColor: grisOscColor,
+          iconEnabledColor: azulOscColor,
+          underline: Container(),
+          isExpanded: true,
+          hint: Text(
+            hint,
+            style: TextStyle(
+                fontFamily: fontApp,
+                color: items.isNotEmpty ? azulOscColor : grisClaColor,
+                fontSize: 15),
+          ),
+          items: items.map<DropdownMenuItem<T>>((T item) {
+            return DropdownMenuItem<T>(
+              value: item,
+              child: Text(
+                item.toString(),
+                style: TextStyle(
+                    fontFamily: fontApp, color: grisClaColor, fontSize: 15),
+              ),
+            );
+          }).toList(),
+        ),
+      ),
+    );
+  }
+}
+

@@ -16,9 +16,54 @@ class OperadoresAsignacionPage extends StatefulWidget {
 }
 
 class _OperadoresAsignacionPageState extends State<OperadoresAsignacionPage> {
+  bool actividad = false;
+
+  int? _selectedRespuesta1;
+  int? _selectedRespuesta2;
+  int? _selectedRespuesta3;
+  int? _selectedRespuesta4;
+  int? _selectedRespuesta5;
+
+  @override
+  void initState() {
+    super.initState();
+    loadData();
+  }
+
+  void loadData() {
+    setState(() {
+      _selectedRespuesta1 = -1;
+      _selectedRespuesta2 = -1;
+      _selectedRespuesta3 = -1;
+      _selectedRespuesta4 = -1;
+      _selectedRespuesta5 = -1;
+    });
+  }
+
+  void _handleRespuesta(int index, Function(int) updateSelected) {
+    setState(() {
+      updateSelected(index);
+    });
+  }
+
+  void _validarRespuestas() async {
+    List<int> respuestasCorrectas = [2, 1, 0, 3, 0];
+    double puntaje = 0;
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+
+    List<String> respuestas1 = ["A) +", "B) -", "C) =", "D) =="];
+
+    List<String> respuestas2 = ["A) 20", "B) 15", "C) 10", "D) 5"];
+
+    List<String> respuestas3 = ["A) 1", "B) 2", "C) 3", "D) 4"];
+
+    List<String> respuestas4 = ["A) +", "B) +=", "C) --", "D) ++"];
+
+    List<String> respuestas5 = ["A) 3", "B) 3.75", "C) 4", "D) 4.5"];
 
     return Scaffold(
         drawer: const SidebarWidget(),
@@ -109,6 +154,12 @@ class _OperadoresAsignacionPageState extends State<OperadoresAsignacionPage> {
                                   children: [
                                     texto(
                                         "+= : Suma el valor de la derecha al valor de la variable y asigna el resultado a la variable.",
+                                        fontApp,
+                                        bigSize,
+                                        negroColor,
+                                        TextAlign.center),
+                                    texto(
+                                        "NOTA: En algunos lenguajes para incrementar en 1 se puede hacer +=1 o ++.",
                                         fontApp,
                                         bigSize,
                                         negroColor,
@@ -338,6 +389,141 @@ class _OperadoresAsignacionPageState extends State<OperadoresAsignacionPage> {
                                   bigSize, negroColor, TextAlign.center),
                             ],
                           ),
+                          separadorVertical(context, 2),
+                          Divider(
+                            color: azulClaColor, // Color de la línea
+                            thickness: 1, // Grosor de la línea
+                            indent: 2, // Espaciado desde el borde izquierdo
+                            endIndent: 2, // Espaciado desde el borde derecho
+                          ),
+                          separadorVertical(context, 2),
+                          CustomButton(
+                              color: azulOscColor,
+                              hoverColor: azulClaColor,
+                              size: bigSize + 4,
+                              textButton: 'Realizar actividad',
+                              heightButton: 45,
+                              widthButton: selectDevice(
+                                  web: 0.22,
+                                  cel: 0.64,
+                                  sizeContext: size.width),
+                              sizeBorderRadius: 15,
+                              duration: 1000,
+                              onTap: () {
+                                setState(() {
+                                  actividad = !actividad;
+                                });
+                              }),
+                          actividad
+                              ? Column(
+                                  children: [
+                                    texto("Preguntas de selección", fontBold,
+                                        20, negroColor, TextAlign.center),
+                                    separadorVertical(context, 1),
+                                    Pregunta(
+                                      pregunta:
+                                          "1. ¿Cuál es el operador de asignación en C++, Java y Python?",
+                                      respuestas: respuestas1,
+                                      colorActivo: azulOscColor,
+                                      onRespuestaSeleccionada: (int index) {
+                                        _handleRespuesta(index, (newValue) {
+                                          _selectedRespuesta1 = newValue;
+                                        });
+                                      },
+                                    ),
+                                    separadorVertical(context, 1),
+                                    Pregunta(
+                                      pregunta:
+                                          "¿Qué valor tendrá la variable x después de ejecutar la siguiente operación en C++, Java o Python? \n int x = 10; \n x += 5;",
+                                      respuestas: respuestas2,
+                                      colorActivo: azulOscColor,
+                                      onRespuestaSeleccionada: (int index) {
+                                        _handleRespuesta(index, (newValue) {
+                                          _selectedRespuesta2 = newValue;
+                                        });
+                                      },
+                                    ),
+                                    separadorVertical(context, 1),
+                                    Pregunta(
+                                      pregunta:
+                                          "3. ¿Cuál es el resultado de la operación aritmética 7 % 3 en C++, Java o Python?",
+                                      respuestas: respuestas3,
+                                      colorActivo: azulOscColor,
+                                      onRespuestaSeleccionada: (int index) {
+                                        _handleRespuesta(index, (newValue) {
+                                          _selectedRespuesta3 = newValue;
+                                        });
+                                      },
+                                    ),
+                                    separadorVertical(context, 1),
+                                    Pregunta(
+                                      pregunta:
+                                          "4. ¿Qué operador se utiliza para incrementar una variable en 1 en C++ y Java?",
+                                      respuestas: respuestas4,
+                                      colorActivo: azulOscColor,
+                                      onRespuestaSeleccionada: (int index) {
+                                        _handleRespuesta(index, (newValue) {
+                                          _selectedRespuesta4 = newValue;
+                                        });
+                                      },
+                                    ),
+                                    separadorVertical(context, 1),
+                                    Pregunta(
+                                      pregunta:
+                                          "5. En Java, ¿cuál es el resultado de la operación 15 / 4 si ambas variables son enteras?",
+                                      respuestas: respuestas5,
+                                      colorActivo: azulOscColor,
+                                      onRespuestaSeleccionada: (int index) {
+                                        _handleRespuesta(index, (newValue) {
+                                          _selectedRespuesta5 = newValue;
+                                        });
+                                      },
+                                    ),
+                                    separadorVertical(context, 1),
+                                    CustomButton(
+                                        color: azulOscColor,
+                                        hoverColor: azulClaColor,
+                                        size: bigSize + 4,
+                                        textButton: 'Enviar',
+                                        heightButton: 45,
+                                        widthButton: selectDevice(
+                                            web: 0.22,
+                                            cel: 0.64,
+                                            sizeContext: size.width),
+                                        sizeBorderRadius: 15,
+                                        duration: 1000,
+                                        onTap: () {
+                                          if (_selectedRespuesta1 == -1 ||
+                                              _selectedRespuesta2 == -1 ||
+                                              _selectedRespuesta3 == -1 ||
+                                              _selectedRespuesta4 == -1 ||
+                                              _selectedRespuesta5 == -1) {
+                                            showDialog(
+                                              context: context,
+                                              builder: (context) =>
+                                                  AlertaVolver(
+                                                width: 250,
+                                                height: 200,
+                                                function: () {
+                                                  Navigator.of(context).pop();
+                                                },
+                                                widthButton: 10,
+                                                textoBoton: 'Volver',
+                                                image: Image.asset(
+                                                    'assets/images/warning.jpg',
+                                                    height: 80),
+                                                mensaje:
+                                                    "Debes responder todas las preguntas",
+                                                dobleBoton: false,
+                                              ),
+                                            );
+                                            return;
+                                          }
+                                          _validarRespuestas();
+                                        }),
+                                  ],
+                                )
+                              : Container(),
                           separadorVertical(context, 2),
                           Divider(
                             color: azulClaColor, // Color de la línea

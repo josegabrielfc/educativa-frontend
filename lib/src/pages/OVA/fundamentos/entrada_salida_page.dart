@@ -42,7 +42,7 @@ class _EntradaSalidaPageState extends State<EntradaSalidaPage> {
   }
 
   void _validarRespuestas() async {
-    List<int> respuestasCorrectas = [1, 1, 0, 0];
+    List<int> respuestasCorrectas = [2, 0, 0];
     double puntaje = 0;
   }
 
@@ -310,7 +310,7 @@ class _EntradaSalidaPageState extends State<EntradaSalidaPage> {
                                     colorActivo: azulOscColor,
                                     onRespuestaSeleccionada: (int index) {
                                       _handleRespuesta(index, (newValue) {
-                                        _selectedRespuesta3 = newValue;
+                                        _selectedRespuesta2 = newValue;
                                       });
                                     },
                                   ),

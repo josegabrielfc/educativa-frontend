@@ -6,7 +6,7 @@ ResultadoModel resultadoModelFromJson(String str) => ResultadoModel.fromJson(jso
 String resultadoModelToJson(ResultadoModel data) => json.encode(data.toJson());
 
 class ResultadoModel {
-    int puntaje;
+    double puntaje;
     Usuario usuario;
     Tema tema;
     String id;

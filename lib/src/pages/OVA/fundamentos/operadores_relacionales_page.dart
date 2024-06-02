@@ -1,6 +1,7 @@
 import 'package:educativa_frontend/src/config/environment/environment.dart';
 import 'package:educativa_frontend/src/models/sidebar_item.dart';
 import 'package:educativa_frontend/src/providers/sidebar_provider.dart';
+import 'package:educativa_frontend/src/widgets/inputs.dart';
 import 'package:educativa_frontend/src/widgets/sidebar_widget.dart';
 import 'package:educativa_frontend/src/widgets/widgets_general.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,40 @@ class OperadoresRelacionalesPage extends StatefulWidget {
 
 class _OperadoresRelacionalesPageState
     extends State<OperadoresRelacionalesPage> {
+  bool actividad = false;
+
+  List<String> itemsCodigoC = [
+    "A) bool esDivisible = (numero % 3 == 0) && (numero % 5 == 0);",
+    'B) std::cout << "El número es divisible por 3 y 5: " << esDivisible << std::endl;',
+    "C) int numero = 15;"
+  ];
+
+  List<String> itemsCodigoJava = [
+    "A) boolean esMayorOPar = (numero > 50) || (numero % 2 == 0);",
+    "B) int numero = 42;",
+    'C) System.out.println("El número es mayor que 50 o es par: " + esMayorOPar);'
+  ];
+
+  List<String> itemsCodigoPython = [
+    'A) print("Es elegible para votar: ", es_elegible)',
+    "B) es_elegible = (edad >= 18) and es_ciudadano",
+    "C) es_ciudadano = True",
+    "D) edad = 20"
+  ];
+
+  String? item1CodigoC;
+  String? item2CodigoC;
+  String? item3CodigoC;
+
+  String? item1CodigoJava;
+  String? item2CodigoJava;
+  String? item3CodigoJava;
+
+  String? item1CodigoPython;
+  String? item2CodigoPython;
+  String? item3CodigoPython;
+  String? item4CodigoPython;
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -204,8 +239,8 @@ class _OperadoresRelacionalesPageState
                                 width: size.width * 0.25,
                                 child: Column(
                                   children: [
-                                    texto("or : O lógico.", fontApp,
-                                        bigSize, negroColor, TextAlign.center),
+                                    texto("or : O lógico.", fontApp, bigSize,
+                                        negroColor, TextAlign.center),
                                     Image.asset(
                                       "images/fundamentos/or.png",
                                       height: 300,
@@ -218,8 +253,8 @@ class _OperadoresRelacionalesPageState
                                 width: size.width * 0.25,
                                 child: Column(
                                   children: [
-                                    texto("not : Negación lógica.", fontApp, bigSize,
-                                        negroColor, TextAlign.center),
+                                    texto("not : Negación lógica.", fontApp,
+                                        bigSize, negroColor, TextAlign.center),
                                     Image.asset(
                                       "images/fundamentos/not.png",
                                       height: 300,
@@ -230,6 +265,295 @@ class _OperadoresRelacionalesPageState
                             ],
                           ),
                           separadorVertical(context, 2),
+                          Divider(
+                            color: azulClaColor, // Color de la línea
+                            thickness: 1, // Grosor de la línea
+                            indent: 2, // Espaciado desde el borde izquierdo
+                            endIndent: 2, // Espaciado desde el borde derecho
+                          ),
+                          separadorVertical(context, 2),
+                          CustomButton(
+                              color: azulOscColor,
+                              hoverColor: azulClaColor,
+                              size: bigSize + 4,
+                              textButton: 'Realizar actividad',
+                              heightButton: 45,
+                              widthButton: selectDevice(
+                                  web: 0.22,
+                                  cel: 0.64,
+                                  sizeContext: size.width),
+                              sizeBorderRadius: 15,
+                              duration: 1000,
+                              onTap: () {
+                                setState(() {
+                                  actividad = !actividad;
+                                });
+                              }),
+                          actividad
+                              ? Column(children: [
+                                  separadorVertical(context, 2),
+                                  texto(
+                                      "1. Ordena las siguientes líneas de código para verificar si un número es divisible por 3 y 5:",
+                                      fontApp,
+                                      bigSize,
+                                      negroColor,
+                                      TextAlign.center),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Column(
+                                        children: [
+                                          texto(
+                                              itemsCodigoC[0],
+                                              fontApp,
+                                              bigSize,
+                                              negroColor,
+                                              TextAlign.center),
+                                          texto(
+                                              itemsCodigoC[1],
+                                              fontApp,
+                                              bigSize,
+                                              negroColor,
+                                              TextAlign.center),
+                                          texto(
+                                              itemsCodigoC[2],
+                                              fontApp,
+                                              bigSize,
+                                              negroColor,
+                                              TextAlign.center),
+                                        ],
+                                      ),
+                                      separadorHorizontal(context, 2),
+                                      Column(
+                                        children: [
+                                          GenericDropdown(
+                                              value: item1CodigoC,
+                                              onChanged: (newValue) {
+                                                setState(() {
+                                                  item1CodigoC = newValue!;
+                                                });
+                                              },
+                                              items: itemsCodigoC,
+                                              width: 400,
+                                              heigth: 35,
+                                              hint: "Selecciona una opcion"),
+                                          separadorVertical(context, 1),
+                                          GenericDropdown(
+                                              value: item2CodigoC,
+                                              onChanged: (newValue) {
+                                                setState(() {
+                                                  item2CodigoC = newValue!;
+                                                });
+                                              },
+                                              items: itemsCodigoC,
+                                              width: 400,
+                                              heigth: 35,
+                                              hint: "Selecciona una opcion"),
+                                          separadorVertical(context, 1),
+                                          GenericDropdown(
+                                              value: item3CodigoC,
+                                              onChanged: (newValue) {
+                                                setState(() {
+                                                  item3CodigoC = newValue!;
+                                                });
+                                              },
+                                              items: itemsCodigoC,
+                                              width: 400,
+                                              heigth: 35,
+                                              hint: "Selecciona una opcion"),
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                  separadorVertical(context, 3),
+                                  texto(
+                                      "2. Ordena las siguientes líneas de código para verificar si un número es mayor que 50 o es par:",
+                                      fontApp,
+                                      bigSize,
+                                      negroColor,
+                                      TextAlign.center),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Column(
+                                        children: [
+                                          texto(
+                                              itemsCodigoJava[0],
+                                              fontApp,
+                                              bigSize,
+                                              negroColor,
+                                              TextAlign.center),
+                                          texto(
+                                              itemsCodigoJava[1],
+                                              fontApp,
+                                              bigSize,
+                                              negroColor,
+                                              TextAlign.center),
+                                          texto(
+                                              itemsCodigoJava[2],
+                                              fontApp,
+                                              bigSize,
+                                              negroColor,
+                                              TextAlign.center),
+                                        ],
+                                      ),
+                                      separadorHorizontal(context, 2),
+                                      Column(
+                                        children: [
+                                          GenericDropdown(
+                                              value: item1CodigoJava,
+                                              onChanged: (newValue) {
+                                                setState(() {
+                                                  item1CodigoJava = newValue!;
+                                                });
+                                              },
+                                              items: itemsCodigoJava,
+                                              width: 400,
+                                              heigth: 35,
+                                              hint: "Selecciona una opcion"),
+                                          separadorVertical(context, 1),
+                                          GenericDropdown(
+                                              value: item2CodigoJava,
+                                              onChanged: (newValue) {
+                                                setState(() {
+                                                  item2CodigoJava = newValue!;
+                                                });
+                                              },
+                                              items: itemsCodigoJava,
+                                              width: 400,
+                                              heigth: 35,
+                                              hint: "Selecciona una opcion"),
+                                          separadorVertical(context, 1),
+                                          GenericDropdown(
+                                              value: item3CodigoJava,
+                                              onChanged: (newValue) {
+                                                setState(() {
+                                                  item3CodigoJava = newValue!;
+                                                });
+                                              },
+                                              items: itemsCodigoJava,
+                                              width: 400,
+                                              heigth: 35,
+                                              hint: "Selecciona una opcion"),
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                  separadorVertical(context, 3),
+                                  texto(
+                                      "3. Ordena las siguientes líneas de código para verificar si una persona es elegible para votar (mayor de 18 años) y es ciudadano:",
+                                      fontApp,
+                                      bigSize,
+                                      negroColor,
+                                      TextAlign.center),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Column(
+                                        children: [
+                                          texto(
+                                              itemsCodigoPython[0],
+                                              fontApp,
+                                              bigSize,
+                                              negroColor,
+                                              TextAlign.center),
+                                          texto(
+                                              itemsCodigoPython[1],
+                                              fontApp,
+                                              bigSize,
+                                              negroColor,
+                                              TextAlign.center),
+                                          texto(
+                                              itemsCodigoPython[2],
+                                              fontApp,
+                                              bigSize,
+                                              negroColor,
+                                              TextAlign.center),
+                                          texto(
+                                              itemsCodigoPython[3],
+                                              fontApp,
+                                              bigSize,
+                                              negroColor,
+                                              TextAlign.center),
+                                        ],
+                                      ),
+                                      separadorHorizontal(context, 2),
+                                      Column(
+                                        children: [
+                                          GenericDropdown(
+                                              value: item1CodigoPython,
+                                              onChanged: (newValue) {
+                                                setState(() {
+                                                  item1CodigoPython = newValue!;
+                                                });
+                                              },
+                                              items: itemsCodigoPython,
+                                              width: 400,
+                                              heigth: 35,
+                                              hint: "Selecciona una opcion"),
+                                          separadorVertical(context, 1),
+                                          GenericDropdown(
+                                              value: item2CodigoPython,
+                                              onChanged: (newValue) {
+                                                setState(() {
+                                                  item2CodigoPython = newValue!;
+                                                });
+                                              },
+                                              items: itemsCodigoPython,
+                                              width: 400,
+                                              heigth: 35,
+                                              hint: "Selecciona una opcion"),
+                                          separadorVertical(context, 1),
+                                          GenericDropdown(
+                                              value: item3CodigoPython,
+                                              onChanged: (newValue) {
+                                                setState(() {
+                                                  item3CodigoPython = newValue!;
+                                                });
+                                              },
+                                              items: itemsCodigoPython,
+                                              width: 400,
+                                              heigth: 35,
+                                              hint: "Selecciona una opcion"),
+                                          separadorVertical(context, 1),
+                                          GenericDropdown(
+                                              value: item4CodigoPython,
+                                              onChanged: (newValue) {
+                                                setState(() {
+                                                  item4CodigoPython = newValue!;
+                                                });
+                                              },
+                                              items: itemsCodigoPython,
+                                              width: 400,
+                                              heigth: 35,
+                                              hint: "Selecciona una opcion"),
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                  separadorVertical(context, 1),
+                                  CustomButton(
+                                      color: azulOscColor,
+                                      hoverColor: azulClaColor,
+                                      size: bigSize + 4,
+                                      textButton: 'Enviar',
+                                      heightButton: 45,
+                                      widthButton: selectDevice(
+                                          web: 0.22,
+                                          cel: 0.64,
+                                          sizeContext: size.width),
+                                      sizeBorderRadius: 15,
+                                      duration: 1000,
+                                      onTap: () {}),
+                                ])
+                              : Container(),
+                          separadorVertical(context, 3),
                           Divider(
                             color: azulClaColor, // Color de la línea
                             thickness: 1, // Grosor de la línea
