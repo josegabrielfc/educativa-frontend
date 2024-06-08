@@ -1,6 +1,9 @@
 import 'package:educativa_frontend/src/config/environment/environment.dart';
+import 'package:educativa_frontend/src/models/resultado/resultado_models.dart';
 import 'package:educativa_frontend/src/models/sidebar_item.dart';
+import 'package:educativa_frontend/src/providers/service_provider.dart';
 import 'package:educativa_frontend/src/providers/sidebar_provider.dart';
+import 'package:educativa_frontend/src/providers/usuario_provider.dart';
 import 'package:educativa_frontend/src/widgets/inputs.dart';
 import 'package:educativa_frontend/src/widgets/sidebar_widget.dart';
 import 'package:educativa_frontend/src/widgets/widgets_general.dart';
@@ -181,8 +184,8 @@ class _VariablesPageState extends State<VariablesPage> {
                             endIndent: 2, // Espaciado desde el borde derecho
                           ),
                           separadorVertical(context, 2),
-                          texto("Identificadores", fontApp, bigSize,
-                              azulColor, TextAlign.start),
+                          texto("Identificadores", fontApp, bigSize, azulColor,
+                              TextAlign.start),
                           separadorVertical(context, 1),
                           texto(
                               "Los identificadores deben empezar con una letra (a-z, A-Z) o un guion bajo (_), seguido de letras, números (0-9) o guiones bajos.",
@@ -231,8 +234,8 @@ class _VariablesPageState extends State<VariablesPage> {
                             endIndent: 2, // Espaciado desde el borde derecho
                           ),
                           separadorVertical(context, 2),
-                          texto("Tipos de Datos", fontApp, bigSize,
-                              azulColor, TextAlign.start),
+                          texto("Tipos de Datos", fontApp, bigSize, azulColor,
+                              TextAlign.start),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -386,10 +389,11 @@ class _VariablesPageState extends State<VariablesPage> {
                                                     CustomTextFormField(
                                                       controller:
                                                           _controllerIntC,
-                                                      width: 70,
+                                                      width: 90,
                                                       height: 10,
                                                       borderColor: azulClaColor,
-                                                      sizeMaxLength: 3,
+                                                      sizeMaxLength: 8,
+                                                      sizeMaxLines: 1,
                                                     ),
                                                     texto(
                                                         ";",
@@ -409,10 +413,11 @@ class _VariablesPageState extends State<VariablesPage> {
                                                     CustomTextFormField(
                                                       controller:
                                                           _controllerFloatC,
-                                                      width: 70,
+                                                      width: 90,
                                                       height: 10,
                                                       borderColor: azulClaColor,
-                                                      sizeMaxLength: 3,
+                                                      sizeMaxLength: 8,
+                                                      sizeMaxLines: 1,
                                                     ),
                                                     texto(
                                                         ";",
@@ -432,10 +437,11 @@ class _VariablesPageState extends State<VariablesPage> {
                                                     CustomTextFormField(
                                                       controller:
                                                           _controllerCharC,
-                                                      width: 70,
+                                                      width: 90,
                                                       height: 10,
                                                       borderColor: azulClaColor,
-                                                      sizeMaxLength: 3,
+                                                      sizeMaxLength: 8,
+                                                      sizeMaxLines: 1,
                                                     ),
                                                     texto(
                                                         "';",
@@ -499,10 +505,11 @@ class _VariablesPageState extends State<VariablesPage> {
                                                     CustomTextFormField(
                                                       controller:
                                                           _controllerIntJava,
-                                                      width: 70,
+                                                      width: 90,
                                                       height: 10,
                                                       borderColor: azulClaColor,
-                                                      sizeMaxLength: 3,
+                                                      sizeMaxLength: 8,
+                                                      sizeMaxLines: 1,
                                                     ),
                                                     texto(
                                                         " edad = 25;",
@@ -522,10 +529,11 @@ class _VariablesPageState extends State<VariablesPage> {
                                                     CustomTextFormField(
                                                       controller:
                                                           _controllerFloatJava,
-                                                      width: 70,
+                                                      width: 90,
                                                       height: 10,
                                                       borderColor: azulClaColor,
-                                                      sizeMaxLength: 3,
+                                                      sizeMaxLength: 8,
+                                                      sizeMaxLines: 1,
                                                     ),
                                                     texto(
                                                         " altura = 1.90;",
@@ -545,10 +553,11 @@ class _VariablesPageState extends State<VariablesPage> {
                                                     CustomTextFormField(
                                                       controller:
                                                           _controllerStringJava,
-                                                      width: 70,
+                                                      width: 90,
                                                       height: 10,
                                                       borderColor: azulClaColor,
-                                                      sizeMaxLength: 3,
+                                                      sizeMaxLength: 8,
+                                                      sizeMaxLines: 1,
                                                     ),
                                                     texto(
                                                         ' nombre ="Juan Carlos";',
@@ -589,7 +598,9 @@ class _VariablesPageState extends State<VariablesPage> {
                                             sizeContext: size.width),
                                         sizeBorderRadius: 15,
                                         duration: 1000,
-                                        onTap: () {}),
+                                        onTap: () async {
+                                          await registrarResultado();
+                                        }),
                                   ],
                                 )
                               : Container(),
@@ -606,5 +617,86 @@ class _VariablesPageState extends State<VariablesPage> {
                     )
                   ]))))
         ]));
+  }
+
+  Future<void> registrarResultado() async {
+    String respuestaCorrectaIntJava = "int";
+    String respuestaCorrectaFloatJava = "float";
+    String respuestaCorrectaStringJava = "String";
+    double puntaje = 0;
+
+    // Validación de las respuestas de C++
+    if (_controllerIntC.text.isNotEmpty &&
+        int.tryParse(_controllerIntC.text) != null) {
+      puntaje += 16.66;
+    }
+    if (_controllerFloatC.text.isNotEmpty &&
+        double.tryParse(_controllerFloatC.text) != null) {
+      puntaje += 16.66;
+    }
+    if (_controllerCharC.text.isNotEmpty && _controllerCharC.text.length == 1) {
+      puntaje += 16.66;
+    }
+
+    // Validación de las respuestas de Java
+    if (_controllerIntJava.text.trim() == respuestaCorrectaIntJava) {
+      puntaje += 16.66;
+    }
+    if (_controllerFloatJava.text.trim() == respuestaCorrectaFloatJava) {
+      puntaje += 16.66;
+    }
+    if (_controllerStringJava.text.trim() == respuestaCorrectaStringJava) {
+      puntaje += 16.7;
+    }
+    String mensaje;
+    if (puntaje == 100) {
+      mensaje = "¡Todas las respuestas son correctas! Puntaje: $puntaje";
+    } else if (puntaje >= 60 && puntaje <= 99) {
+      mensaje =
+          "Muy bien, casi todas las respuestas son correctas. Puntaje: $puntaje";
+    } else {
+      mensaje = "Puntaje bajo. Inténtalo de nuevo. Puntaje: $puntaje";
+    }
+    final usuarioProvider =
+        Provider.of<UsuarioProvider>(context, listen: false);
+
+    String token = usuarioProvider.token!;
+    String usuarioId = usuarioProvider.usuario!;
+    String temaId = usuarioProvider.buscarTemaPorNombre("Variables")!;
+    ResultadoForm resultado =
+        ResultadoForm(puntaje: puntaje, temaId: temaId, usuarioId: usuarioId);
+
+    final serviceProvider =
+        Provider.of<ServicesProvider>(context, listen: false);
+    final response = await serviceProvider.resultadoService
+        .registrarResultado(resultado, token);
+
+    showDialog(
+      barrierDismissible: false,
+      // ignore: use_build_context_synchronously
+      context: context,
+      builder: (context) => AlertaVolver(
+        width: 200,
+        height: 210,
+        function: () {
+          Navigator.of(context).pop();
+          setState(() {
+            _controllerIntC.clear();
+            _controllerFloatC.clear();
+            _controllerCharC.clear();
+            _controllerIntJava.clear();
+            _controllerFloatJava.clear();
+            _controllerStringJava.clear();
+          });
+        },
+        widthButton: 10,
+        textoBoton: 'Volver',
+        image: response.type == "success"
+            ? Image.asset("assets/images/success.png", height: 80)
+            : Image.asset("assets/images/warning.jpg", height: 80),
+        mensaje: response.type == "success" ? mensaje : response.msg,
+        dobleBoton: false,
+      ),
+    );
   }
 }
