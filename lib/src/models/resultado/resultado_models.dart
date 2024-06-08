@@ -76,3 +76,32 @@ class Usuario {
         "nombre": nombre,
     };
 }
+
+
+ResultadoForm resultadoFormFromJson(String str) => ResultadoForm.fromJson(json.decode(str));
+
+String resultadoFormToJson(ResultadoForm data) => json.encode(data.toJson());
+
+class ResultadoForm {
+    double puntaje;
+    String usuarioId;
+    String temaId;
+
+    ResultadoForm({
+        required this.puntaje,
+        required this.usuarioId,
+        required this.temaId,
+    });
+
+    factory ResultadoForm.fromJson(Map<String, dynamic> json) => ResultadoForm(
+        puntaje: json["puntaje"],
+        usuarioId: json["usuarioId"],
+        temaId: json["temaId"]
+    );
+
+    Map<String, dynamic> toJson() => {
+        "puntaje": puntaje,
+        "usuarioId": usuarioId,
+        "temaId": temaId
+    };
+}

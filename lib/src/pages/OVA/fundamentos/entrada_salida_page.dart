@@ -1,6 +1,9 @@
 import 'package:educativa_frontend/src/config/environment/environment.dart';
+import 'package:educativa_frontend/src/models/resultado/resultado_models.dart';
 import 'package:educativa_frontend/src/models/sidebar_item.dart';
+import 'package:educativa_frontend/src/providers/service_provider.dart';
 import 'package:educativa_frontend/src/providers/sidebar_provider.dart';
+import 'package:educativa_frontend/src/providers/usuario_provider.dart';
 import 'package:educativa_frontend/src/widgets/sidebar_widget.dart';
 import 'package:educativa_frontend/src/widgets/widgets_general.dart';
 import 'package:flutter/material.dart';
@@ -44,6 +47,64 @@ class _EntradaSalidaPageState extends State<EntradaSalidaPage> {
   void _validarRespuestas() async {
     List<int> respuestasCorrectas = [2, 0, 0];
     double puntaje = 0;
+
+    if (_selectedRespuesta1 == respuestasCorrectas[0]) {
+      puntaje += 33.3;
+    }
+    if (_selectedRespuesta2 == respuestasCorrectas[1]) {
+      puntaje += 33.3;
+    }
+    if (_selectedRespuesta3 == respuestasCorrectas[2]) {
+      puntaje += 33.4;
+    }
+
+    String mensaje;
+
+    if (puntaje <= 100 && puntaje > 75) {
+      mensaje = "¡Todas las respuestas son correctas! Puntaje: $puntaje";
+    } else if (puntaje <= 75 && puntaje > 50) {
+      mensaje =
+          "Muy bien, casi todas las respuestas son correctas. Puntaje: $puntaje";
+    } else {
+      mensaje = "Puntaje bajo. Inténtalo de nuevo. Puntaje: $puntaje";
+    }
+
+    final usuarioProvider =
+        // ignore: use_build_context_synchronously
+        Provider.of<UsuarioProvider>(context, listen: false);
+
+    String token = usuarioProvider.token!;
+    String usuarioId = usuarioProvider.usuario!;
+    String temaId =
+        usuarioProvider.buscarTemaPorNombre("Instrucciones de entrada/salida")!;
+    ResultadoForm resultado =
+        ResultadoForm(puntaje: puntaje, temaId: temaId, usuarioId: usuarioId);
+
+    final servicePorvider =
+        Provider.of<ServicesProvider>(context, listen: false);
+    final response = await servicePorvider.resultadoService
+        .registrarResultado(resultado, token);
+    // ignore: use_build_context_synchronously
+    showDialog(
+      barrierDismissible: false,
+      // ignore: use_build_context_synchronously
+      context: context,
+      builder: (context) => AlertaVolver(
+        width: 200,
+        height: 210,
+        function: () {
+          Navigator.of(context).pop();
+          loadData();
+        },
+        widthButton: 10,
+        textoBoton: 'Volver',
+        image: response.type == "success"
+            ? Image.asset("assets/images/success.png", height: 80)
+            : Image.asset("assets/images/warning.jpg", height: 80),
+        mensaje: response.type == "success" ? mensaje : response.msg,
+        dobleBoton: false,
+      ),
+    );
   }
 
   @override

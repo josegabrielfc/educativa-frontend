@@ -121,7 +121,8 @@ class _LoginPageState extends State<LoginPage> {
                           usuarioProvider.setToken(response["msg"]["token"]);
                           usuarioProvider
                               .setUsuario(response["msg"]["usuarioid"]);
-
+                          final temas = await serviceProvider.temaService.listarTemas(response["msg"]["token"]);
+                          usuarioProvider.setTemas(temas);
                           // ignore: use_build_context_synchronously
                           Navigator.pushNamed(context, "home-page");
                         } else {

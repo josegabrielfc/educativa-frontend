@@ -1,5 +1,7 @@
 import 'package:educativa_frontend/src/services/implements/resultado_service_impl.dart';
+import 'package:educativa_frontend/src/services/implements/tema_service_impl.dart';
 import 'package:educativa_frontend/src/services/mixins/resultado_service.dart';
+import 'package:educativa_frontend/src/services/mixins/tema_service.dart';
 import 'package:flutter/material.dart';
 import 'package:educativa_frontend/src/services/implements/login_service_impl.dart';
 import 'package:educativa_frontend/src/services/implements/usuario_service_impl.dart';
@@ -10,7 +12,7 @@ class ServicesProvider extends ChangeNotifier {
   final LoginService _loginService = LoginServiceImlp();
   final UsuarioService _usuarioService = UsuarioServiceImlp();
   final ResultadoService _resultadoService = ResultadoServiceImlp();
-
+  final TemaService _temaService = TemaServiceImpl();
   LoginService get loginService {
     return _loginService;
   }
@@ -21,5 +23,9 @@ class ServicesProvider extends ChangeNotifier {
 
   ResultadoService get resultadoService {
     return _resultadoService;
+  }
+
+  TemaService get temaService {
+    return _temaService;
   }
 }
