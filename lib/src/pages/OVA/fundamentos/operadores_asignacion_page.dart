@@ -105,7 +105,7 @@ class _OperadoresAsignacionPageState extends State<OperadoresAsignacionPage> {
                         "Operadores de Asignación y  Aritméticos",
                         fontExtraBold,
                         bigSize + 8,
-                        azulOscColor,
+                        azulColor,
                         TextAlign.center),
                     SizedBox(
                         width: size.width * 0.9,
@@ -125,7 +125,7 @@ class _OperadoresAsignacionPageState extends State<OperadoresAsignacionPage> {
                           ),
                           separadorVertical(context, 2),
                           texto("Operadores de Asignación", fontApp, bigSize,
-                              azulOscColor, TextAlign.center),
+                              azulColor, TextAlign.center),
                           separadorVertical(context, 1),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -241,7 +241,7 @@ class _OperadoresAsignacionPageState extends State<OperadoresAsignacionPage> {
                           ),
                           separadorVertical(context, 2),
                           texto("Operadores de Aritméticos", fontApp, bigSize,
-                              azulOscColor, TextAlign.center),
+                              azulColor, TextAlign.center),
                           separadorVertical(context, 1),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -335,7 +335,7 @@ class _OperadoresAsignacionPageState extends State<OperadoresAsignacionPage> {
                           ),
                           separadorVertical(context, 2),
                           texto("Precedencia de Operadores", fontApp, bigSize,
-                              azulOscColor, TextAlign.center),
+                              azulColor, TextAlign.center),
                           separadorVertical(context, 1),
                           RichText(
                             textAlign: TextAlign.justify,

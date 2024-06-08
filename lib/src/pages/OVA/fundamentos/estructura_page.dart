@@ -57,7 +57,7 @@ class _EstructuraPageState extends State<EstructuraPage> {
                       ),
                       separadorVertical(context, 2),
                       texto("Estructura General del Lenguaje", fontExtraBold,
-                          bigSize + 8, azulOscColor, TextAlign.center),
+                          bigSize + 8, azulColor, TextAlign.center),
                       separadorVertical(context, 2),
                       SizedBox(
                           width: size.width * 0.9,
@@ -80,7 +80,7 @@ class _EstructuraPageState extends State<EstructuraPage> {
                                   style: TextStyle(
                                     fontFamily: fontApp,
                                     fontSize: bigSize,
-                                    color: azulOscColor,
+                                    color: azulColor,
                                   ),
                                 ),
                                 TextSpan(
@@ -100,7 +100,7 @@ class _EstructuraPageState extends State<EstructuraPage> {
                           width: size.width * 0.9,
                           child: Column(
                             children: [
-                              texto("Sintaxis", fontBold, bigSize, azulOscColor,
+                              texto("Sintaxis", fontBold, bigSize, azulColor,
                                   TextAlign.start),
                               texto(
                                   "La sintaxis de un lenguaje de programación son las reglas que definen las combinaciones de símbolos que se consideran correctamente estructuradas en ese lenguaje. La sintaxis incluye:",
@@ -126,7 +126,7 @@ class _EstructuraPageState extends State<EstructuraPage> {
                                       style: TextStyle(
                                         fontFamily: fontExtraBold,
                                         fontSize: bigSize,
-                                        color: negroColor,
+                                        color: azulColor,
                                       ),
                                     ),
                                     TextSpan(
@@ -196,7 +196,7 @@ class _EstructuraPageState extends State<EstructuraPage> {
                                       style: TextStyle(
                                         fontFamily: fontExtraBold,
                                         fontSize: bigSize,
-                                        color: negroColor,
+                                        color: azulColor,
                                       ),
                                     ),
                                     TextSpan(
@@ -278,7 +278,7 @@ class _EstructuraPageState extends State<EstructuraPage> {
                                       style: TextStyle(
                                         fontFamily: fontExtraBold,
                                         fontSize: bigSize,
-                                        color: negroColor,
+                                        color: azulColor,
                                       ),
                                     ),
                                     TextSpan(

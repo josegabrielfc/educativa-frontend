@@ -26,8 +26,7 @@ class _FundamentosPageState extends State<FundamentosPage> {
         appBar: AppBar(backgroundColor: const Color(0xFFC2F8FA)),
         floatingActionButton: Container(
           alignment: Alignment.topLeft,
-          padding:
-              const EdgeInsets.only(left: 80, top: 20),
+          padding: const EdgeInsets.only(left: 80, top: 20),
           child: CustomButton(
               color: azulOscColor,
               hoverColor: azulClaColor,
@@ -59,10 +58,10 @@ class _FundamentosPageState extends State<FundamentosPage> {
                     ),
                     separadorVertical(context, 2),
                     texto("¿Qué es un lenguaje de programación?", fontExtraBold,
-                        bigSize + 8, azulOscColor, TextAlign.center),
+                        bigSize + 8, azulColor, TextAlign.center),
                     separadorVertical(context, 2),
                     SizedBox(
-                      width: size.width * 0.4,
+                      width: size.width * 0.5,
                       child: texto(
                           "Un lenguaje de programación es un conjunto de reglas gramaticales (tanto sintácticas como semánticas) que instruyen a que un ordenador o dispositivo se comporte de una cierta manera. Cada lenguaje de programación tiene un vocabulario, un conjunto único de palabras clave que sigue a una sintaxis especial para formar y organizar instrucciones del ordenador.",
                           fontApp,
@@ -72,44 +71,131 @@ class _FundamentosPageState extends State<FundamentosPage> {
                     ),
                     separadorVertical(context, 2),
                     texto("Tipos de lenguaje de programación", fontApp,
-                        bigSize + 2, azulOscColor, TextAlign.start),
+                        bigSize + 2, azulColor, TextAlign.start),
                     separadorVertical(context, 2),
                     SizedBox(
-                      width: size.width,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            width: size.width * 0.4,
-                            child: Column(
-                              children: [
-                                texto("Lenguajes de bajo nivel", fontBold,
-                                    bigSize, negroColor, TextAlign.start),
-                                texto(
-                                    "Están diseñados para un hardware específico y que por lo tanto no pueden migrar o exportarse a otros computadores. Sacan el mayor provecho posible al sistema para el que fueron diseñados, pero no aplican para ningún otro.",
-                                    fontBold,
-                                    bigSize,
-                                    negroColor,
-                                    TextAlign.start)
-                              ],
+                      width: size.width * 0.7,
+                      child: DataTable(
+                        columnSpacing: 20,
+                        border: TableBorder.all(
+                          borderRadius: BorderRadius.circular(20),
+                          color: azulColor,
+                        ),
+                        columns: [
+                          DataColumn(
+                            label: texto(
+                              'Categoría',
+                              fontExtraBold,
+                              bigSize + 2,
+                              azulOscColor,
+                              TextAlign.center,
                             ),
                           ),
-                          separadorHorizontal(context, 2),
-                          SizedBox(
-                            width: size.width * 0.4,
-                            child: Column(
-                              children: [
-                                texto("Lenguajes de alto nivel", fontBold,
-                                    bigSize, negroColor, TextAlign.start),
-                                texto(
-                                    "Aspiran a ser un lenguaje más universal, por lo que pueden emplearse indistintamente de la arquitectura del hardware, es decir, en diversos tipos de sistemas. Los hay de propósito general y de propósito específico.",
+                          DataColumn(
+                            label: texto(
+                              'Descripción',
+                              fontExtraBold,
+                              bigSize + 2,
+                              azulOscColor,
+                              TextAlign.center,
+                            ),
+                          ),
+                        ],
+                        rows: [
+                          DataRow(
+                            cells: [
+                              DataCell(
+                                SizedBox(
+                                  width: size.width * 0.1,
+                                  child: texto(
+                                    'Lenguajes de bajo nivel',
                                     fontBold,
                                     bigSize,
                                     negroColor,
-                                    TextAlign.start)
-                              ],
-                            ),
-                          )
+                                    TextAlign.start,
+                                  ),
+                                ),
+                              ),
+                              DataCell(
+                                SizedBox(
+                                  width: size.width * 0.6,
+                                  child: texto(
+                                    'Están diseñados para un hardware específico y que por lo tanto no pueden migrar o exportarse a otros computadores. Sacan el mayor provecho posible al sistema para el que fueron diseñados, pero no aplican para ningún otro.',
+                                    fontBold,
+                                    bigSize,
+                                    negroColor,
+                                    TextAlign.start,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          DataRow(
+                            cells: [
+                              DataCell(
+                                texto(
+                                  'Lenguajes de alto nivel',
+                                  fontBold,
+                                  bigSize,
+                                  negroColor,
+                                  TextAlign.start,
+                                ),
+                              ),
+                              DataCell(
+                                texto(
+                                  'Aspiran a ser un lenguaje más universal, por lo que pueden emplearse indistintamente de la arquitectura del hardware, es decir, en diversos tipos de sistemas. Los hay de propósito general y de propósito específico.',
+                                  fontBold,
+                                  bigSize,
+                                  negroColor,
+                                  TextAlign.start,
+                                ),
+                              ),
+                            ],
+                          ),
+                          DataRow(
+                            cells: [
+                              DataCell(
+                                texto(
+                                  'Lenguajes de Tipado Estático',
+                                  fontBold,
+                                  bigSize,
+                                  negroColor,
+                                  TextAlign.start,
+                                ),
+                              ),
+                              DataCell(
+                                texto(
+                                  'En estos lenguajes, los tipos de todas las variables se deben declarar explícitamente, o se pueden inferir en tiempo de compilación. Los errores de tipo se detectan antes de ejecutar el programa. Ejemplos: Java, C, C++, Swift, Rust, Haskell.',
+                                  fontApp,
+                                  bigSize,
+                                  negroColor,
+                                  TextAlign.start,
+                                ),
+                              ),
+                            ],
+                          ),
+                          DataRow(
+                            cells: [
+                              DataCell(
+                                texto(
+                                  'Lenguajes de Tipado Dinámico',
+                                  fontBold,
+                                  bigSize,
+                                  negroColor,
+                                  TextAlign.start,
+                                ),
+                              ),
+                              DataCell(
+                                texto(
+                                  'En estos lenguajes, los tipos de las variables se determinan en tiempo de ejecución. Esto puede hacer que el código sea más flexible, pero los errores de tipo se detectan solo cuando el programa se ejecuta. Ejemplos: Python, Ruby, JavaScript, PHP, Perl.',
+                                  fontApp,
+                                  bigSize,
+                                  negroColor,
+                                  TextAlign.start,
+                                ),
+                              ),
+                            ],
+                          ),
                         ],
                       ),
                     ),

@@ -68,7 +68,7 @@ class _VariablesPageState extends State<VariablesPage> {
                         "Variables – Identificador y Tipo de Dato",
                         fontExtraBold,
                         bigSize + 8,
-                        azulOscColor,
+                        azulColor,
                         TextAlign.center),
                     separadorVertical(context, 2),
                     SizedBox(
@@ -89,7 +89,7 @@ class _VariablesPageState extends State<VariablesPage> {
                             endIndent: 2, // Espaciado desde el borde derecho
                           ),
                           separadorVertical(context, 2),
-                          texto("Variables", fontApp, bigSize, azulOscColor,
+                          texto("Variables", fontApp, bigSize, azulColor,
                               TextAlign.start),
                           separadorVertical(context, 1),
                           RichText(
@@ -182,7 +182,7 @@ class _VariablesPageState extends State<VariablesPage> {
                           ),
                           separadorVertical(context, 2),
                           texto("Identificadores", fontApp, bigSize,
-                              azulOscColor, TextAlign.start),
+                              azulColor, TextAlign.start),
                           separadorVertical(context, 1),
                           texto(
                               "Los identificadores deben empezar con una letra (a-z, A-Z) o un guion bajo (_), seguido de letras, números (0-9) o guiones bajos.",
@@ -232,7 +232,7 @@ class _VariablesPageState extends State<VariablesPage> {
                           ),
                           separadorVertical(context, 2),
                           texto("Tipos de Datos", fontApp, bigSize,
-                              azulOscColor, TextAlign.start),
+                              azulColor, TextAlign.start),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [

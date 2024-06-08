@@ -106,7 +106,7 @@ class _EntradaSalidaPageState extends State<EntradaSalidaPage> {
                       "Instrucciones de entrada/salida por consola estándar (Teclado y Pantalla)",
                       fontExtraBold,
                       bigSize + 8,
-                      azulOscColor,
+                      azulColor,
                       TextAlign.center),
                   separadorVertical(context, 2),
                   SizedBox(

@@ -92,7 +92,7 @@ class _OperadoresRelacionalesPageState
                     ),
                     separadorVertical(context, 2),
                     texto("Operadores Relacionales y Lógicos", fontExtraBold,
-                        bigSize + 8, azulOscColor, TextAlign.center),
+                        bigSize + 8, azulColor, TextAlign.center),
                     SizedBox(
                       width: size.width * 0.9,
                       child: Column(
@@ -112,7 +112,7 @@ class _OperadoresRelacionalesPageState
                           ),
                           separadorVertical(context, 2),
                           texto("Operadores Relacionales", fontApp, bigSize,
-                              azulOscColor, TextAlign.center),
+                              azulColor, TextAlign.center),
                           separadorVertical(context, 1),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -216,7 +216,7 @@ class _OperadoresRelacionalesPageState
                           ),
                           separadorVertical(context, 2),
                           texto("Operadores Lógicos", fontApp, bigSize,
-                              azulOscColor, TextAlign.center),
+                              azulColor, TextAlign.center),
                           separadorVertical(context, 1),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
