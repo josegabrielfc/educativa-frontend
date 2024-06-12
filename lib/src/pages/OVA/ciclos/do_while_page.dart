@@ -1,6 +1,9 @@
 import 'package:educativa_frontend/src/config/environment/environment.dart';
+import 'package:educativa_frontend/src/models/resultado/resultado_models.dart';
 import 'package:educativa_frontend/src/models/sidebar_item.dart';
+import 'package:educativa_frontend/src/providers/service_provider.dart';
 import 'package:educativa_frontend/src/providers/sidebar_provider.dart';
+import 'package:educativa_frontend/src/providers/usuario_provider.dart';
 import 'package:educativa_frontend/src/widgets/sidebar_widget.dart';
 import 'package:educativa_frontend/src/widgets/widgets_general.dart';
 import 'package:flutter/material.dart';
@@ -15,9 +18,126 @@ class DoWhilePage extends StatefulWidget {
 }
 
 class _DoWhilePageState extends State<DoWhilePage> {
+  bool actividad = false;
+
+  int? _selectedRespuesta1;
+  int? _selectedRespuesta2;
+  int? _selectedRespuesta3;
+  int? _selectedRespuesta4;
+
+  @override
+  void initState() {
+    super.initState();
+    loadData();
+  }
+
+  void loadData() {
+    setState(() {
+      _selectedRespuesta1 = -1;
+      _selectedRespuesta2 = -1;
+      _selectedRespuesta3 = -1;
+      _selectedRespuesta4 = -1;
+    });
+  }
+
+  void _handleRespuesta(int index, Function(int) updateSelected) {
+    setState(() {
+      updateSelected(index);
+    });
+  }
+
+  void _validarRespuestas() async {
+    List<int> respuestasCorrectas = [0, 2, 1, 0];
+    double puntaje = 0;
+
+    if (_selectedRespuesta1 == respuestasCorrectas[0]) {
+      puntaje += 25;
+    }
+    if (_selectedRespuesta2 == respuestasCorrectas[1]) {
+      puntaje += 25;
+    }
+    if (_selectedRespuesta3 == respuestasCorrectas[2]) {
+      puntaje += 25;
+    }
+    if (_selectedRespuesta4 == respuestasCorrectas[3]) {
+      puntaje += 25;
+    }
+
+    String mensaje;
+
+    if (puntaje <= 100 && puntaje > 75) {
+      mensaje = "¡Todas las respuestas son correctas! Puntaje: $puntaje";
+    } else if (puntaje <= 75 && puntaje > 50) {
+      mensaje =
+          "Muy bien, casi todas las respuestas son correctas. Puntaje: $puntaje";
+    } else {
+      mensaje = "Puntaje bajo. Inténtalo de nuevo. Puntaje: $puntaje";
+    }
+
+    final usuarioProvider =
+        // ignore: use_build_context_synchronously
+        Provider.of<UsuarioProvider>(context, listen: false);
+
+    String token = usuarioProvider.token!;
+    String usuarioId = usuarioProvider.usuario!;
+    String temaId = usuarioProvider.buscarTemaPorNombre("Bucles do while")!;
+    ResultadoForm resultado =
+        ResultadoForm(puntaje: puntaje, temaId: temaId, usuarioId: usuarioId);
+
+    final servicePorvider =
+        Provider.of<ServicesProvider>(context, listen: false);
+    final response = await servicePorvider.resultadoService
+        .registrarResultado(resultado, token);
+    // ignore: use_build_context_synchronously
+    showDialog(
+      barrierDismissible: false,
+      // ignore: use_build_context_synchronously
+      context: context,
+      builder: (context) => AlertaVolver(
+        width: 200,
+        height: 210,
+        function: () {
+          Navigator.of(context).pop();
+          loadData();
+        },
+        widthButton: 10,
+        textoBoton: 'Volver',
+        image: response.type == "success"
+            ? Image.asset("assets/images/success.png", height: 80)
+            : Image.asset("assets/images/warning.jpg", height: 80),
+        mensaje: response.type == "success" ? mensaje : response.msg,
+        dobleBoton: false,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    List<String> respuestas1 = [
+      //A
+      "A) do { ... } while (condición);",
+      "B) while { ... } do (condición);",
+      "C) do (condición) { ... } while;",
+      "D) while (condición) { ... } do;"
+    ];
+
+    List<String> respuestas2 = [
+      //C
+      "A) do (i <= 5) { cout << i; i++; } while;",
+      "B) while (i <= 5) { cout << i; i++; }",
+      "C) do { cout << i; i++; } while (i <= 5);",
+      "D) for (i = 1; i <= 5; i++) { cout << i; }"
+    ];
+    List<String> respuestas3 = ["A) Verdadero", "B) Falso"]; //B
+    List<String> respuestas4 = [
+      //A
+      "A) while True: ... if not condición: break",
+      "B) do: ... while condición",
+      "C) while condición: ... do",
+      "D) for i in range(condición): ..."
+    ];
+
     return Scaffold(
         drawer: const SidebarWidget(),
         appBar: AppBar(backgroundColor: const Color(0xFFC2F8FA)),
@@ -367,7 +487,149 @@ class _DoWhilePageState extends State<DoWhilePage> {
                           grisOscColor,
                           TextAlign.center),
                     ),
+                    separadorVertical(context, 5),
+                    Divider(
+                      color: azulClaColor,
+                      thickness: 2,
+                      indent: 2,
+                      endIndent: 2,
+                    ),
                     separadorVertical(context, 3),
+                    CustomButton(
+                        color: azulOscColor,
+                        hoverColor: azulClaColor,
+                        size: bigSize + 4,
+                        textButton: 'Realizar actividad',
+                        heightButton: 45,
+                        widthButton: selectDevice(
+                            web: 0.22, cel: 0.64, sizeContext: size.width),
+                        sizeBorderRadius: 15,
+                        duration: 1000,
+                        onTap: () {
+                          setState(() {
+                            actividad = !actividad;
+                          });
+                        }),
+                    actividad
+                        ? Column(
+                            children: [
+                              separadorVertical(context, 2.5),
+                              texto("Preguntas de selección", fontBold, 20,
+                                  azulColor, TextAlign.center),
+                              separadorVertical(context, 2),
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: size.width * 0.225),
+                                child: Pregunta(
+                                  pregunta:
+                                      "1. ¿Cuál es la estructura básica de un ciclo do-while en Java?\n",
+                                  respuestas: respuestas1,
+                                  colorActivo: azulOscColor,
+                                  onRespuestaSeleccionada: (int index) {
+                                    _handleRespuesta(index, (newValue) {
+                                      _selectedRespuesta1 = newValue;
+                                    });
+                                  },
+                                ),
+                              ),
+                              separadorVertical(context, 2),
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: size.width * 0.225),
+                                child: Pregunta(
+                                  pregunta:
+                                      "2. ¿Cómo se usa un ciclo do-while en C++ para imprimir los números del 1 al 5?\n",
+                                  respuestas: respuestas2,
+                                  colorActivo: azulOscColor,
+                                  onRespuestaSeleccionada: (int index) {
+                                    _handleRespuesta(index, (newValue) {
+                                      _selectedRespuesta2 = newValue;
+                                    });
+                                  },
+                                ),
+                              ),
+                              separadorVertical(context, 2),
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: size.width * 0.225),
+                                child: Pregunta(
+                                  pregunta:
+                                      "3. ¿Existe el ciclo do-while en Python?\n",
+                                  respuestas: respuestas3,
+                                  colorActivo: azulOscColor,
+                                  onRespuestaSeleccionada: (int index) {
+                                    _handleRespuesta(index, (newValue) {
+                                      _selectedRespuesta3 = newValue;
+                                    });
+                                  },
+                                ),
+                              ),
+                              separadorVertical(context, 2),
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: size.width * 0.225),
+                                child: Pregunta(
+                                  pregunta:
+                                      "4. ¿Cómo se puede simular un ciclo do-while en Python, dado que no existe directamente en el lenguaje?\n",
+                                  respuestas: respuestas4,
+                                  colorActivo: azulOscColor,
+                                  onRespuestaSeleccionada: (int index) {
+                                    _handleRespuesta(index, (newValue) {
+                                      _selectedRespuesta4 = newValue;
+                                    });
+                                  },
+                                ),
+                              ),
+                              separadorVertical(context, 2),
+                              CustomButton(
+                                  color: azulOscColor,
+                                  hoverColor: azulClaColor,
+                                  size: bigSize + 4,
+                                  textButton: 'Enviar',
+                                  heightButton: 45,
+                                  widthButton: selectDevice(
+                                      web: 0.22,
+                                      cel: 0.64,
+                                      sizeContext: size.width),
+                                  sizeBorderRadius: 15,
+                                  duration: 1000,
+                                  onTap: () {
+                                    if (_selectedRespuesta1 == -1 ||
+                                        _selectedRespuesta2 == -1 ||
+                                        _selectedRespuesta3 == -1) {
+                                      showDialog(
+                                        context: context,
+                                        builder: (context) => AlertaVolver(
+                                          width: 250,
+                                          height: 200,
+                                          function: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                          widthButton: 10,
+                                          textoBoton: 'Volver',
+                                          image: Image.asset(
+                                              'assets/images/warning.jpg',
+                                              height: 80),
+                                          mensaje:
+                                              "Debes responder todas las preguntas",
+                                          dobleBoton: false,
+                                        ),
+                                      );
+                                      return;
+                                    }
+                                    _validarRespuestas();
+                                  }),
+                            ],
+                          )
+                        : Container(),
+                    separadorVertical(context, 2),
+                    Divider(
+                      color: azulClaColor, // Color de la línea
+                      thickness: 1, // Grosor de la línea
+                      indent: 2, // Espaciado desde el borde izquierdo
+                      endIndent: 2, // Espaciado desde el borde derecho
+                    ),
+                    separadorVertical(context, 2),
                   ]),
                 ),
               ))

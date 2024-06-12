@@ -1,6 +1,9 @@
 import 'package:educativa_frontend/src/config/environment/environment.dart';
+import 'package:educativa_frontend/src/models/resultado/resultado_models.dart';
 import 'package:educativa_frontend/src/models/sidebar_item.dart';
+import 'package:educativa_frontend/src/providers/service_provider.dart';
 import 'package:educativa_frontend/src/providers/sidebar_provider.dart';
+import 'package:educativa_frontend/src/providers/usuario_provider.dart';
 import 'package:educativa_frontend/src/widgets/sidebar_widget.dart';
 import 'package:educativa_frontend/src/widgets/widgets_general.dart';
 import 'package:flutter/material.dart';
@@ -15,9 +18,122 @@ class ForPage extends StatefulWidget {
 }
 
 class _ForPageState extends State<ForPage> {
+  bool actividad = false;
+
+  int? _selectedRespuesta1;
+  int? _selectedRespuesta2;
+  int? _selectedRespuesta3;
+  int? _selectedRespuesta4;
+
+  @override
+  void initState() {
+    super.initState();
+    loadData();
+  }
+
+  void loadData() {
+    setState(() {
+      _selectedRespuesta1 = -1;
+      _selectedRespuesta2 = -1;
+      _selectedRespuesta3 = -1;
+      _selectedRespuesta4 = -1;
+    });
+  }
+
+  void _handleRespuesta(int index, Function(int) updateSelected) {
+    setState(() {
+      updateSelected(index);
+    });
+  }
+
+  void _validarRespuestas() async {
+    List<int> respuestasCorrectas = [3, 1, 0, 1];
+    double puntaje = 0;
+
+    if (_selectedRespuesta1 == respuestasCorrectas[0]) {
+      puntaje += 25;
+    }
+    if (_selectedRespuesta2 == respuestasCorrectas[1]) {
+      puntaje += 25;
+    }
+    if (_selectedRespuesta3 == respuestasCorrectas[2]) {
+      puntaje += 25;
+    }
+    if (_selectedRespuesta4 == respuestasCorrectas[3]) {
+      puntaje += 25;
+    }
+
+    String mensaje;
+
+    if (puntaje <= 100 && puntaje > 75) {
+      mensaje = "¡Todas las respuestas son correctas! Puntaje: $puntaje";
+    } else if (puntaje <= 75 && puntaje > 50) {
+      mensaje =
+          "Muy bien, casi todas las respuestas son correctas. Puntaje: $puntaje";
+    } else {
+      mensaje = "Puntaje bajo. Inténtalo de nuevo. Puntaje: $puntaje";
+    }
+
+    final usuarioProvider =
+        // ignore: use_build_context_synchronously
+        Provider.of<UsuarioProvider>(context, listen: false);
+
+    String token = usuarioProvider.token!;
+    String usuarioId = usuarioProvider.usuario!;
+    String temaId = usuarioProvider.buscarTemaPorNombre("Bucles do while")!;
+    ResultadoForm resultado =
+        ResultadoForm(puntaje: puntaje, temaId: temaId, usuarioId: usuarioId);
+
+    final servicePorvider =
+        Provider.of<ServicesProvider>(context, listen: false);
+    final response = await servicePorvider.resultadoService
+        .registrarResultado(resultado, token);
+    // ignore: use_build_context_synchronously
+    showDialog(
+      barrierDismissible: false,
+      // ignore: use_build_context_synchronously
+      context: context,
+      builder: (context) => AlertaVolver(
+        width: 200,
+        height: 210,
+        function: () {
+          Navigator.of(context).pop();
+          loadData();
+        },
+        widthButton: 10,
+        textoBoton: 'Volver',
+        image: response.type == "success"
+            ? Image.asset("assets/images/success.png", height: 80)
+            : Image.asset("assets/images/warning.jpg", height: 80),
+        mensaje: response.type == "success" ? mensaje : response.msg,
+        dobleBoton: false,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    List<String> respuestas1 = [ //D
+      "A) 1 2 3 4",
+      "B) 1 2 3 4 5",
+      "C) 0 1 2 3 4 5",
+      "D) 0 1 2 3 4"
+    ];
+
+    List<String> respuestas2 = [ //B
+      "A) 1 2 3 4 5 6",
+      "B) 1 2 2 4 3 6",
+      "C) 2 4 6 8",
+      "D) 1 4 9"
+    ];
+    List<String> respuestas3 = [ //A
+      "A) 0 0 0 1 0 2",
+      "B) 0 0 1 2 3 4",
+      "C) 0 0 0 1 0 2 0 3",
+      "D) 0 0 0 0 1 2"
+    ];
+    List<String> respuestas4 = ["A) 15", "B) 25", "C) 20", "D) 30"]; //B
     return Scaffold(
         drawer: const SidebarWidget(),
         appBar: AppBar(backgroundColor: const Color(0xFFC2F8FA)),
@@ -79,12 +195,8 @@ class _ForPageState extends State<ForPage> {
                     separadorVertical(context, 2),
                     SizedBox(
                       width: size.width * 0.7,
-                      child: texto(
-                          "La sintaxis de un ciclo for es:",
-                          fontApp,
-                          bigSize,
-                          negroColor,
-                          TextAlign.justify),
+                      child: texto("La sintaxis de un ciclo for es:", fontApp,
+                          bigSize, negroColor, TextAlign.justify),
                     ),
                     separadorVertical(context, 3),
                     Row(
@@ -255,8 +367,8 @@ class _ForPageState extends State<ForPage> {
                           ),
                           DataRow(
                             cells: [
-                              DataCell(texto('Control Compacto', fontBold, bigSize,
-                                  negroColor, TextAlign.start)),
+                              DataCell(texto('Control Compacto', fontBold,
+                                  bigSize, negroColor, TextAlign.start)),
                               DataCell(texto(
                                   'Combina la inicialización, la condición y la actualización de la variable de control\nen una sola línea, lo que hace el código más compacto y fácil de leer.',
                                   fontApp,
@@ -267,8 +379,12 @@ class _ForPageState extends State<ForPage> {
                           ),
                           DataRow(
                             cells: [
-                              DataCell(texto('Iteración a través de Colecciones', fontBold,
-                                  bigSize, negroColor, TextAlign.start)),
+                              DataCell(texto(
+                                  'Iteración a través de Colecciones',
+                                  fontBold,
+                                  bigSize,
+                                  negroColor,
+                                  TextAlign.start)),
                               DataCell(texto(
                                   'En Python, el ciclo for es especialmente útil para iterar a través\nde colecciones\ncomo listas, tuplas y diccionarios.',
                                   fontApp,
@@ -281,7 +397,7 @@ class _ForPageState extends State<ForPage> {
                       ),
                     ),
                     separadorVertical(context, 5),
-                     SizedBox(
+                    SizedBox(
                       width: size.width * 0.8,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -293,8 +409,12 @@ class _ForPageState extends State<ForPage> {
                             shrinkWrap: true,
                             children: [
                               ListTile(
-                                leading: texto("1. Condición de Salida:", fontBold, bigSize,
-                                    negroColor, TextAlign.center),
+                                leading: texto(
+                                    "1. Condición de Salida:",
+                                    fontBold,
+                                    bigSize,
+                                    negroColor,
+                                    TextAlign.center),
                                 title: texto(
                                   "Es crucial asegurarse de que la condición del bucle se cumpla para evitar bucles infinitos.",
                                   fontApp,
@@ -304,8 +424,8 @@ class _ForPageState extends State<ForPage> {
                                 ),
                               ),
                               ListTile(
-                                leading: texto("2. Eficiencia:", fontBold, bigSize,
-                                    negroColor, TextAlign.center),
+                                leading: texto("2. Eficiencia:", fontBold,
+                                    bigSize, negroColor, TextAlign.center),
                                 title: texto(
                                   "Utilizar el ciclo for adecuadamente puede mejorar la eficiencia y legibilidad del código.",
                                   fontApp,
@@ -452,7 +572,8 @@ class _ForPageState extends State<ForPage> {
                       ],
                     ),
                     separadorVertical(context, 5),
-                    texto("Conclusión", fontExtraBold, extraBigSize, azulOscColor, TextAlign.start),
+                    texto("Conclusión", fontExtraBold, extraBigSize,
+                        azulOscColor, TextAlign.start),
                     separadorVertical(context, 1),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 100),
@@ -463,7 +584,149 @@ class _ForPageState extends State<ForPage> {
                           grisOscColor,
                           TextAlign.center),
                     ),
+                    separadorVertical(context, 5),
+                    Divider(
+                      color: azulClaColor,
+                      thickness: 2,
+                      indent: 2,
+                      endIndent: 2,
+                    ),
                     separadorVertical(context, 3),
+                    CustomButton(
+                        color: azulOscColor,
+                        hoverColor: azulClaColor,
+                        size: bigSize + 4,
+                        textButton: 'Realizar actividad',
+                        heightButton: 45,
+                        widthButton: selectDevice(
+                            web: 0.22, cel: 0.64, sizeContext: size.width),
+                        sizeBorderRadius: 15,
+                        duration: 1000,
+                        onTap: () {
+                          setState(() {
+                            actividad = !actividad;
+                          });
+                        }),
+                    actividad
+                        ? Column(
+                            children: [
+                              separadorVertical(context, 2.5),
+                              texto("Preguntas de selección", fontBold, 20,
+                                  azulColor, TextAlign.center),
+                              separadorVertical(context, 2),
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: size.width * 0.225),
+                                child: Pregunta(
+                                  pregunta:
+                                      "1. ¿Cuál es el resultado del siguiente código en Java?\nfor (int i = 0; i < 5; i++) {\n  System.out.print(i + \" \");\n}",
+                                  respuestas: respuestas1,
+                                  colorActivo: azulOscColor,
+                                  onRespuestaSeleccionada: (int index) {
+                                    _handleRespuesta(index, (newValue) {
+                                      _selectedRespuesta1 = newValue;
+                                    });
+                                  },
+                                ),
+                              ),
+                              separadorVertical(context, 2),
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: size.width * 0.225),
+                                child: Pregunta(
+                                  pregunta:
+                                      "2. ¿Qué imprimirá el siguiente código en C++?\nfor (int i = 1; i <= 3; i++) {\n  for (int j = 1; j <= 2; j++) {\n    cout << i * j << \" \";\n  }\n}",
+                                  respuestas: respuestas2,
+                                  colorActivo: azulOscColor,
+                                  onRespuestaSeleccionada: (int index) {
+                                    _handleRespuesta(index, (newValue) {
+                                      _selectedRespuesta2 = newValue;
+                                    });
+                                  },
+                                ),
+                              ),
+                              separadorVertical(context, 2),
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: size.width * 0.225),
+                                child: Pregunta(
+                                  pregunta:
+                                      "3. ¿Cuál es la salida del siguiente código en Python?\nfor i in range(3):\n  for j in range(2):\n    print(i * j, end=\" \")",
+                                  respuestas: respuestas3,
+                                  colorActivo: azulOscColor,
+                                  onRespuestaSeleccionada: (int index) {
+                                    _handleRespuesta(index, (newValue) {
+                                      _selectedRespuesta3 = newValue;
+                                    });
+                                  },
+                                ),
+                              ),
+                              separadorVertical(context, 2),
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: size.width * 0.225),
+                                child: Pregunta(
+                                  pregunta:
+                                      "4. ¿Qué valor imprimirá el siguiente código en Java?\nint sum = 0;\nfor (int i = 0; i <= 10; i+=2) {\n  sum += i;\n}\nSystem.out.println(sum);",
+                                  respuestas: respuestas4,
+                                  colorActivo: azulOscColor,
+                                  onRespuestaSeleccionada: (int index) {
+                                    _handleRespuesta(index, (newValue) {
+                                      _selectedRespuesta4 = newValue;
+                                    });
+                                  },
+                                ),
+                              ),
+                              separadorVertical(context, 2),
+                              CustomButton(
+                                  color: azulOscColor,
+                                  hoverColor: azulClaColor,
+                                  size: bigSize + 4,
+                                  textButton: 'Enviar',
+                                  heightButton: 45,
+                                  widthButton: selectDevice(
+                                      web: 0.22,
+                                      cel: 0.64,
+                                      sizeContext: size.width),
+                                  sizeBorderRadius: 15,
+                                  duration: 1000,
+                                  onTap: () {
+                                    if (_selectedRespuesta1 == -1 ||
+                                        _selectedRespuesta2 == -1 ||
+                                        _selectedRespuesta3 == -1) {
+                                      showDialog(
+                                        context: context,
+                                        builder: (context) => AlertaVolver(
+                                          width: 250,
+                                          height: 200,
+                                          function: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                          widthButton: 10,
+                                          textoBoton: 'Volver',
+                                          image: Image.asset(
+                                              'assets/images/warning.jpg',
+                                              height: 80),
+                                          mensaje:
+                                              "Debes responder todas las preguntas",
+                                          dobleBoton: false,
+                                        ),
+                                      );
+                                      return;
+                                    }
+                                    _validarRespuestas();
+                                  }),
+                            ],
+                          )
+                        : Container(),
+                    separadorVertical(context, 2),
+                    Divider(
+                      color: azulClaColor, // Color de la línea
+                      thickness: 1, // Grosor de la línea
+                      indent: 2, // Espaciado desde el borde izquierdo
+                      endIndent: 2, // Espaciado desde el borde derecho
+                    ),
+                    separadorVertical(context, 2),
                   ]),
                 ),
               ))
