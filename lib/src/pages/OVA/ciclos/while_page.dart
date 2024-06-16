@@ -1,6 +1,10 @@
 import 'package:educativa_frontend/src/config/environment/environment.dart';
+import 'package:educativa_frontend/src/models/resultado/resultado_models.dart';
 import 'package:educativa_frontend/src/models/sidebar_item.dart';
+import 'package:educativa_frontend/src/providers/service_provider.dart';
 import 'package:educativa_frontend/src/providers/sidebar_provider.dart';
+import 'package:educativa_frontend/src/providers/usuario_provider.dart';
+import 'package:educativa_frontend/src/widgets/inputs.dart';
 import 'package:educativa_frontend/src/widgets/sidebar_widget.dart';
 import 'package:educativa_frontend/src/widgets/widgets_general.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +19,10 @@ class WhilePage extends StatefulWidget {
 }
 
 class _WhilePageState extends State<WhilePage> {
+  bool actividad = false;
+  final TextEditingController _controllerPy1 = TextEditingController();
+  final TextEditingController _controllerPy2 = TextEditingController();
+  final TextEditingController _controllerJava = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -425,7 +433,8 @@ class _WhilePageState extends State<WhilePage> {
                       ],
                     ),
                     separadorVertical(context, 5),
-                    texto("Conclusión", fontExtraBold, extraBigSize, azulOscColor, TextAlign.start),
+                    texto("Conclusión", fontExtraBold, extraBigSize,
+                        azulOscColor, TextAlign.start),
                     separadorVertical(context, 1),
                     texto(
                         "El ciclo while es una herramienta poderosa y flexible que permite realizar repeticiones basadas en condiciones. Comprender cómo utilizar el ciclo while correctamente es esencial para desarrollar algoritmos eficientes y evitar errores comunes como los bucles infinitos.\n\nEn el siguiente tema, exploraremos en detalle otro tipo de bucle: el ciclo for, que es útil para iteraciones conocidas y estructuradas.",
@@ -434,9 +443,298 @@ class _WhilePageState extends State<WhilePage> {
                         grisOscColor,
                         TextAlign.center),
                     separadorVertical(context, 3),
+                    Divider(
+                      color: azulClaColor, // Color de la línea
+                      thickness: 1, // Grosor de la línea
+                      indent: 2, // Espaciado desde el borde izquierdo
+                      endIndent: 2, // Espaciado desde el borde derecho
+                    ),
+                    separadorVertical(context, 2),
+                    CustomButton(
+                        color: azulOscColor,
+                        hoverColor: azulClaColor,
+                        size: bigSize + 4,
+                        textButton: 'Realizar actividad',
+                        heightButton: 45,
+                        widthButton: selectDevice(
+                            web: 0.22, cel: 0.64, sizeContext: size.width),
+                        sizeBorderRadius: 15,
+                        duration: 1000,
+                        onTap: () {
+                          setState(() {
+                            actividad = !actividad;
+                          });
+                        }),
+                    actividad
+                        ? Column(
+                            children: [
+                              separadorVertical(context, 2),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  separadorVertical(context, 1),
+                                  SizedBox(
+                                    width: size.width * 0.35,
+                                    child: Column(
+                                      children: [
+                                        texto(
+                                            "Completa el codigo para que el ciclo while sea funcional usando el lenguaje de programación Python",
+                                            fontApp,
+                                            bigSize,
+                                            negroColor,
+                                            TextAlign.center),
+                                        separadorVertical(context, 1),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            texto(
+                                                "numero = 1",
+                                                fontApp,
+                                                bigSize,
+                                                negroColor,
+                                                TextAlign.start),
+                                            Row(children: [
+                                              texto("while ", fontApp, bigSize,
+                                                  negroColor, TextAlign.start),
+                                              CustomTextFormField(
+                                                controller: _controllerPy1,
+                                                width: 90,
+                                                height: 10,
+                                                borderColor: azulClaColor,
+                                                sizeMaxLength: 8,
+                                                sizeMaxLines: 1,
+                                              ),
+                                              texto("<= 20:", fontApp, bigSize,
+                                                  negroColor, TextAlign.start),
+                                            ]),
+                                            separadorVertical(context, 1),
+                                            texto(
+                                                "   if numero % 2 == 0:",
+                                                fontApp,
+                                                bigSize,
+                                                negroColor,
+                                                TextAlign.start),
+                                            texto(
+                                                "   print('Es par')",
+                                                fontApp,
+                                                bigSize,
+                                                negroColor,
+                                                TextAlign.start),
+                                            separadorVertical(context, 1),
+                                            texto("   else:", fontApp, bigSize,
+                                                negroColor, TextAlign.start),
+                                            Row(children: [
+                                              texto(
+                                                  "   print('Es ",
+                                                  fontApp,
+                                                  bigSize,
+                                                  negroColor,
+                                                  TextAlign.start),
+                                              CustomTextFormField(
+                                                controller: _controllerPy2,
+                                                width: 90,
+                                                height: 10,
+                                                borderColor: azulClaColor,
+                                                sizeMaxLength: 8,
+                                                sizeMaxLines: 1,
+                                              ),
+                                              texto("')", fontApp, bigSize,
+                                                  negroColor, TextAlign.start),
+                                            ]),
+                                            texto(
+                                                "numero += 1",
+                                                fontApp,
+                                                bigSize,
+                                                negroColor,
+                                                TextAlign.start),
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  separadorHorizontal(context, 2),
+                                  SizedBox(
+                                    width: size.width * 0.35,
+                                    child: Column(
+                                      children: [
+                                        texto(
+                                            "Completa el codigo para que el ciclo while sea funcional usando el lenguaje de programación Java",
+                                            fontApp,
+                                            bigSize,
+                                            negroColor,
+                                            TextAlign.center),
+                                        separadorVertical(context, 1),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            texto(
+                                                "public class Main",
+                                                fontApp,
+                                                bigSize,
+                                                negroColor,
+                                                TextAlign.start),
+                                            texto("{", fontApp, bigSize,
+                                                negroColor, TextAlign.start),
+                                            texto(
+                                                "   public static void main(String[] args) {",
+                                                fontApp,
+                                                bigSize,
+                                                negroColor,
+                                                TextAlign.start),
+                                            texto(
+                                                "   int contador = 1;",
+                                                fontApp,
+                                                bigSize,
+                                                negroColor,
+                                                TextAlign.start),
+                                            Row(children: [
+                                              texto(
+                                                  "     while( ",
+                                                  fontApp,
+                                                  bigSize,
+                                                  negroColor,
+                                                  TextAlign.start),
+                                              CustomTextFormField(
+                                                controller: _controllerJava,
+                                                width: 90,
+                                                height: 10,
+                                                borderColor: azulClaColor,
+                                                sizeMaxLength: 8,
+                                                sizeMaxLines: 1,
+                                              ),
+                                              texto(
+                                                  " <= 15 ) {",
+                                                  fontApp,
+                                                  bigSize,
+                                                  negroColor,
+                                                  TextAlign.start),
+                                            ]),
+                                            separadorVertical(context, 1),
+                                            texto(
+                                                "      System.out.println(contador);",
+                                                fontApp,
+                                                bigSize,
+                                                negroColor,
+                                                TextAlign.start),
+                                            texto(
+                                                "      contador++;",
+                                                fontApp,
+                                                bigSize,
+                                                negroColor,
+                                                TextAlign.start),
+                                            separadorVertical(context, 1),
+                                            texto("     }", fontApp, bigSize,
+                                                negroColor, TextAlign.start),
+                                            texto("   }", fontApp, bigSize,
+                                                negroColor, TextAlign.start),
+                                            texto("}", fontApp, bigSize,
+                                                negroColor, TextAlign.start),
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              separadorVertical(context, 1),
+                              CustomButton(
+                                  color: azulOscColor,
+                                  hoverColor: azulClaColor,
+                                  size: bigSize + 4,
+                                  textButton: 'Enviar',
+                                  heightButton: 45,
+                                  widthButton: selectDevice(
+                                      web: 0.22,
+                                      cel: 0.64,
+                                      sizeContext: size.width),
+                                  sizeBorderRadius: 15,
+                                  duration: 1000,
+                                  onTap: () async {
+                                    await registrarResultado();
+                                  }),
+                            ],
+                          )
+                        : Container(),
+                    separadorVertical(context, 2),
+                    Divider(
+                      color: azulClaColor, // Color de la línea
+                      thickness: 1, // Grosor de la línea
+                      indent: 2, // Espaciado desde el borde izquierdo
+                      endIndent: 2, // Espaciado desde el borde derecho
+                    ),
+                    separadorVertical(context, 2),
                   ]),
                 ),
               ))
         ]));
+  }
+
+  Future<void> registrarResultado() async {
+    String respuestaCorrectaPy1 = "numero";
+    String respuestaCorrectaPy2 = "impar";
+    String respuestaCorrectaJava = "contador";
+    double puntaje = 0;
+
+    // Validación de las respuestas de Python
+    if (_controllerPy1.text.trim() == respuestaCorrectaPy1) {
+      puntaje += 16.66;
+    }
+    if (_controllerPy2.text.trim() == respuestaCorrectaPy2) {
+      puntaje += 16.66;
+    }
+
+    // Validación de las respuestas de Java
+    if (_controllerJava.text.trim() == respuestaCorrectaJava) {
+      puntaje += 16.67;
+    }
+    String mensaje;
+    if (puntaje == 100) {
+      mensaje = "¡Todas las respuestas son correctas! Puntaje: $puntaje";
+    } else if (puntaje >= 60 && puntaje <= 99) {
+      mensaje =
+          "Muy bien, casi todas las respuestas son correctas. Puntaje: $puntaje";
+    } else {
+      mensaje = "Puntaje bajo. Inténtalo de nuevo. Puntaje: $puntaje";
+    }
+    final usuarioProvider =
+        Provider.of<UsuarioProvider>(context, listen: false);
+
+    String token = usuarioProvider.token!;
+    String usuarioId = usuarioProvider.usuario!;
+    String temaId = usuarioProvider.buscarTemaPorNombre("Variables")!;
+    ResultadoForm resultado =
+        ResultadoForm(puntaje: puntaje, temaId: temaId, usuarioId: usuarioId);
+
+    final serviceProvider =
+        Provider.of<ServicesProvider>(context, listen: false);
+    final response = await serviceProvider.resultadoService
+        .registrarResultado(resultado, token);
+
+    showDialog(
+      barrierDismissible: false,
+      // ignore: use_build_context_synchronously
+      context: context,
+      builder: (context) => AlertaVolver(
+        width: 200,
+        height: 210,
+        function: () {
+          Navigator.of(context).pop();
+          setState(() {
+            _controllerPy1.clear();
+            _controllerPy2.clear();
+            _controllerJava.clear();
+          });
+        },
+        widthButton: 10,
+        textoBoton: 'Volver',
+        image: response.type == "success"
+            ? Image.asset("assets/images/success.png", height: 80)
+            : Image.asset("assets/images/warning.jpg", height: 80),
+        mensaje: response.type == "success" ? mensaje : response.msg,
+        dobleBoton: false,
+      ),
+    );
   }
 }
