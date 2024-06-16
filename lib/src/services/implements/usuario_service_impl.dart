@@ -25,4 +25,32 @@ class UsuarioServiceImlp with UsuarioService {
     return Response.fromJson(responseBody);
   }
   
+  @override
+  Future<List<EstudianteModel>> listarEstudiantes(String token) async {
+     final String url = '$urlBase/usuario';
+
+    final Map<String, String> headers = {
+      'Content-Type': 'application/json',
+      "x-token": token
+    };
+
+    final response = await http.get(
+      Uri.parse(url),
+      headers: headers,
+    );
+
+    if (response.statusCode == 200) {
+
+      final List<dynamic> jsonResponse = jsonDecode(response.body)['msg'];
+
+      List<EstudianteModel> estudiantes = jsonResponse.map((e) => EstudianteModel.fromJson(e)).toList();
+
+      return estudiantes;
+    } else {
+      print('Failed to load estudiantes');
+      return [];
+    }
+    
+  }
+  
 }

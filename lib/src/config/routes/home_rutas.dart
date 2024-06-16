@@ -19,6 +19,7 @@ import 'package:educativa_frontend/src/pages/OVA/fundamentos/operadores_asignaci
 import 'package:educativa_frontend/src/pages/OVA/fundamentos/operadores_relacionales_page.dart';
 import 'package:educativa_frontend/src/pages/OVA/fundamentos/variables_page.dart';
 import 'package:educativa_frontend/src/pages/OVA/resultados_page.dart';
+import 'package:educativa_frontend/src/pages/admin/estudiantes_page.dart';
 import 'package:educativa_frontend/src/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
@@ -55,4 +56,8 @@ final Map<String, Widget> pages = {
     DoWhilePage.name: const DoWhilePage(),
     ForPage.name: const ForPage(),
     EquivalenciaWhilePage.name: const EquivalenciaWhilePage(),
+
+
+  // Admin
+  EstudiantesPage.name: const EstudiantesPage(),
 };

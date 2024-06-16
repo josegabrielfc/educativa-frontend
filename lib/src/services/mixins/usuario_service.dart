@@ -6,4 +6,6 @@ mixin UsuarioService {
   Future<Response> registrar(
       UsuarioRegistro usuarioRegistro);
 
+  Future<List<EstudianteModel>> listarEstudiantes(String token);
+
 }

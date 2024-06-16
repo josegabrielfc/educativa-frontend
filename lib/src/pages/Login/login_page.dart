@@ -123,8 +123,15 @@ class _LoginPageState extends State<LoginPage> {
                               .setUsuario(response["msg"]["usuarioid"]);
                           final temas = await serviceProvider.temaService.listarTemas(response["msg"]["token"]);
                           usuarioProvider.setTemas(temas);
-                          // ignore: use_build_context_synchronously
-                          Navigator.pushNamed(context, "home-page");
+                         
+                          if(_controllerEmail.text == "admin@gmail.com") {
+                            // ignore: use_build_context_synchronously
+                            Navigator.pushNamed(context, "estudiantes-page");
+                          } else {
+                            // ignore: use_build_context_synchronously
+                            Navigator.pushNamed(context, "home-page");
+                          }
+                          
                         } else {
                           // ignore: use_build_context_synchronously
                           showDialog(
