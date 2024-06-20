@@ -703,7 +703,7 @@ class _WhilePageState extends State<WhilePage> {
 
     String token = usuarioProvider.token!;
     String usuarioId = usuarioProvider.usuario!;
-    String temaId = usuarioProvider.buscarTemaPorNombre("Variables")!;
+    String temaId = usuarioProvider.buscarTemaPorNombre("Bucles while")!;
     ResultadoForm resultado =
         ResultadoForm(puntaje: puntaje, temaId: temaId, usuarioId: usuarioId);
 
