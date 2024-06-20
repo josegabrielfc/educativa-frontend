@@ -1,7 +1,11 @@
 import 'package:educativa_frontend/src/config/environment/environment.dart';
+import 'package:educativa_frontend/src/models/resultado/resultado_models.dart';
+import 'package:educativa_frontend/src/providers/service_provider.dart';
+import 'package:educativa_frontend/src/providers/usuario_provider.dart';
 import 'package:educativa_frontend/src/widgets/sidebar_widget.dart';
 import 'package:educativa_frontend/src/widgets/widgets_general.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SwitchPage extends StatefulWidget {
   static const name = 'switch-page';
@@ -38,9 +42,73 @@ class _SwitchPageState extends State<SwitchPage> {
     });
   }
 
-  void _validarRespuestas() async {
-    List<int> respuestasCorrectas = [0, 1, 0];
+  Future<void> registrarResultado() async {
     double puntaje = 0;
+
+    // Validación de las respuestas seleccionadas
+    if (_selectedRespuesta1 != null && _selectedRespuesta1 == 0) {
+      puntaje += 33.33;
+    }
+    if (_selectedRespuesta2 != null && _selectedRespuesta2 == 0) {
+      puntaje += 33.33;
+    }
+    if (_selectedRespuesta3 != null && _selectedRespuesta3 == 0) {
+      puntaje += 33.34;
+    }
+
+    // Aquí se puede calcular el puntaje total y construir el mensaje de acuerdo al puntaje obtenido
+    String mensaje;
+    if (puntaje == 3.0) {
+      mensaje = "¡Todas las respuestas son correctas! Puntaje: $puntaje";
+    } else if (puntaje >= 1.0 && puntaje < 3.0) {
+      mensaje =
+          "Muy bien, casi todas las respuestas son correctas. Puntaje: $puntaje";
+    } else {
+      mensaje = "Puntaje bajo. Inténtalo de nuevo. Puntaje: $puntaje";
+    }
+
+    // Aquí debes ajustar según tus necesidades para obtener el token y otros datos del usuario
+    final usuarioProvider =
+        Provider.of<UsuarioProvider>(context, listen: false);
+    String token = usuarioProvider.token!;
+    String usuarioId = usuarioProvider.usuario!;
+    String temaId = usuarioProvider.buscarTemaPorNombre(
+        "Switch")!; // Asegúrate de tener el ID correcto del tema
+
+    // Construyes el objeto ResultadoForm o similar según tu implementación
+    ResultadoForm resultado = ResultadoForm(
+      puntaje: puntaje,
+      temaId: temaId,
+      usuarioId: usuarioId,
+    );
+
+    // Aquí ajustas para hacer la llamada a tu servicio para registrar el resultado
+    final serviceProvider =
+        Provider.of<ServicesProvider>(context, listen: false);
+    final response = await serviceProvider.resultadoService
+        .registrarResultado(resultado, token);
+
+    // Muestra un diálogo según la respuesta obtenida del servicio
+    showDialog(
+      barrierDismissible: false,
+      // ignore: use_build_context_synchronously
+      context: context,
+      builder: (context) => AlertaVolver(
+        width: 200,
+        height: 210,
+        function: () {
+          Navigator.of(context).pop();
+          setState(() {});
+        },
+        widthButton: 10,
+        textoBoton: 'Volver',
+        image: response.type == "success"
+            ? Image.asset("assets/images/success.png", height: 80)
+            : Image.asset("assets/images/warning.jpg", height: 80),
+        mensaje: response.type == "success" ? mensaje : response.msg,
+        dobleBoton: false,
+      ),
+    );
   }
 
   @override
@@ -195,7 +263,7 @@ class _SwitchPageState extends State<SwitchPage> {
                                 colorActivo: azulOscColor,
                                 onRespuestaSeleccionada: (int index) {
                                   _handleRespuesta(index, (newValue) {
-                                    _selectedRespuesta3 = newValue;
+                                    _selectedRespuesta2 = newValue;
                                   });
                                 },
                               ),
@@ -248,7 +316,7 @@ class _SwitchPageState extends State<SwitchPage> {
                                       );
                                       return;
                                     }
-                                    _validarRespuestas();
+                                    registrarResultado();
                                   }),
                             ],
                           )

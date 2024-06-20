@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-String urlBase = 'http://localhost:3000';
+String urlBase = 'http://3.21.92.133:3000';
 
 Color azulColor = const Color.fromRGBO(52, 152, 219, 1);
 Color azulClaColor = const Color.fromRGBO(70, 123, 144, 1);
@@ -35,6 +35,8 @@ double mediumSize = 14;
 double bigSize = 16;
 double extraBigSize = 24;
 
-double selectDevice({required double web, required double cel, required double sizeContext}) { // size1 = Web | size2 = mobil
+double selectDevice(
+    {required double web, required double cel, required double sizeContext}) {
+  // size1 = Web | size2 = mobil
   return sizeContext > 1025 ? sizeContext * web : sizeContext * cel;
 }
