@@ -157,7 +157,7 @@ class _EntradaSalidaPageState extends State<EntradaSalidaPage> {
                 child: SingleChildScrollView(
                     child: Column(children: [
                   Image.asset(
-                    'images/background.png',
+                    'assets/images/background.png',
                     width: size.width,
                     height: size.height * 0.3,
                     fit: BoxFit.cover,
@@ -196,12 +196,12 @@ class _EntradaSalidaPageState extends State<EntradaSalidaPage> {
                                   texto("Entrada de datos en Python.", fontApp,
                                       bigSize, negroColor, TextAlign.center),
                                   Image.asset(
-                                    "images/fundamentos/entrada-python.png",
+                                    "assets/images/fundamentos/entrada-python.png",
                                     width: 300,
                                   ),
                                   separadorVertical(context, 2),
                                   Image.asset(
-                                    "images/fundamentos/entrada-consola-python.png",
+                                    "assets/images/fundamentos/entrada-consola-python.png",
                                     width: 300,
                                   ),
                                 ],
@@ -214,12 +214,12 @@ class _EntradaSalidaPageState extends State<EntradaSalidaPage> {
                                   texto("Salida de datos en Python.", fontApp,
                                       bigSize, negroColor, TextAlign.center),
                                   Image.asset(
-                                    "images/fundamentos/salida-python.png",
+                                    "assets/images/fundamentos/salida-python.png",
                                     width: 300,
                                   ),
                                   separadorVertical(context, 2),
                                   Image.asset(
-                                    "images/fundamentos/salida-consola-python.png",
+                                    "assets/images/fundamentos/salida-consola-python.png",
                                     width: 200,
                                   ),
                                 ],
@@ -244,12 +244,12 @@ class _EntradaSalidaPageState extends State<EntradaSalidaPage> {
                                   texto("Entrada de datos en C++.", fontApp,
                                       bigSize, negroColor, TextAlign.center),
                                   Image.asset(
-                                    "images/fundamentos/entrada-c.png",
+                                    "assets/images/fundamentos/entrada-c.png",
                                     width: 300,
                                   ),
                                   separadorVertical(context, 2),
                                   Image.asset(
-                                    "images/fundamentos/entrada-consola-c.png",
+                                    "assets/images/fundamentos/entrada-consola-c.png",
                                     width: 300,
                                   ),
                                 ],
@@ -262,12 +262,12 @@ class _EntradaSalidaPageState extends State<EntradaSalidaPage> {
                                   texto("Salida de datos en C++.", fontApp,
                                       bigSize, negroColor, TextAlign.center),
                                   Image.asset(
-                                    "images/fundamentos/salida-c.png",
+                                    "assets/images/fundamentos/salida-c.png",
                                     width: 400,
                                   ),
                                   separadorVertical(context, 2),
                                   Image.asset(
-                                    "images/fundamentos/salida-consola-c.png",
+                                    "assets/images/fundamentos/salida-consola-c.png",
                                     width: 300,
                                   ),
                                 ],
@@ -292,12 +292,12 @@ class _EntradaSalidaPageState extends State<EntradaSalidaPage> {
                                   texto("Entrada de datos en Java.", fontApp,
                                       bigSize, negroColor, TextAlign.center),
                                   Image.asset(
-                                    "images/fundamentos/entrada-java.png",
+                                    "assets/images/fundamentos/entrada-java.png",
                                     width: 300,
                                   ),
                                   separadorVertical(context, 2),
                                   Image.asset(
-                                    "images/fundamentos/entrada-consola-java.png",
+                                    "assets/images/fundamentos/entrada-consola-java.png",
                                     width: 300,
                                   ),
                                 ],
@@ -310,12 +310,12 @@ class _EntradaSalidaPageState extends State<EntradaSalidaPage> {
                                   texto("Salida de datos en Java.", fontApp,
                                       bigSize, negroColor, TextAlign.center),
                                   Image.asset(
-                                    "images/fundamentos/salida-java.png",
+                                    "assets/images/fundamentos/salida-java.png",
                                     width: 400,
                                   ),
                                   separadorVertical(context, 2),
                                   Image.asset(
-                                    "images/fundamentos/salida-consola-java.png",
+                                    "assets/images/fundamentos/salida-consola-java.png",
                                     width: 300,
                                   ),
                                 ],

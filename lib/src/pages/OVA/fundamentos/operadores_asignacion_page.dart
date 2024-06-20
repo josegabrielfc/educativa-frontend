@@ -163,7 +163,7 @@ class _OperadoresAsignacionPageState extends State<OperadoresAsignacionPage> {
                   child: SingleChildScrollView(
                       child: Column(children: [
                     Image.asset(
-                      'images/background.png',
+                      'assets/images/background.png',
                       width: size.width,
                       height: size.height * 0.3,
                       fit: BoxFit.cover,
@@ -209,7 +209,7 @@ class _OperadoresAsignacionPageState extends State<OperadoresAsignacionPage> {
                                         negroColor,
                                         TextAlign.center),
                                     Image.asset(
-                                      "images/fundamentos/asignar-variable.png",
+                                      "assets/images/fundamentos/asignar-variable.png",
                                       height: 300,
                                     ),
                                   ],
@@ -233,7 +233,7 @@ class _OperadoresAsignacionPageState extends State<OperadoresAsignacionPage> {
                                         negroColor,
                                         TextAlign.center),
                                     Image.asset(
-                                      "images/fundamentos/incrementar-variable.png",
+                                      "assets/images/fundamentos/incrementar-variable.png",
                                       height: 300,
                                     ),
                                   ],
@@ -251,7 +251,7 @@ class _OperadoresAsignacionPageState extends State<OperadoresAsignacionPage> {
                                         negroColor,
                                         TextAlign.center),
                                     Image.asset(
-                                      "images/fundamentos/decrementar-variable.png",
+                                      "assets/images/fundamentos/decrementar-variable.png",
                                       height: 300,
                                     ),
                                   ],
@@ -274,7 +274,7 @@ class _OperadoresAsignacionPageState extends State<OperadoresAsignacionPage> {
                                         negroColor,
                                         TextAlign.center),
                                     Image.asset(
-                                      "images/fundamentos/incre-multi-variable.png",
+                                      "assets/images/fundamentos/incre-multi-variable.png",
                                       height: 300,
                                     ),
                                   ],
@@ -292,7 +292,7 @@ class _OperadoresAsignacionPageState extends State<OperadoresAsignacionPage> {
                                         negroColor,
                                         TextAlign.center),
                                     Image.asset(
-                                      "images/fundamentos/decre-divi-variable.png",
+                                      "assets/images/fundamentos/decre-divi-variable.png",
                                       height: 300,
                                     ),
                                   ],
@@ -321,7 +321,7 @@ class _OperadoresAsignacionPageState extends State<OperadoresAsignacionPage> {
                                     texto("+ : Suma.", fontApp, bigSize,
                                         negroColor, TextAlign.center),
                                     Image.asset(
-                                      "images/fundamentos/suma.png",
+                                      "assets/images/fundamentos/suma.png",
                                       height: 300,
                                     ),
                                   ],
@@ -335,7 +335,7 @@ class _OperadoresAsignacionPageState extends State<OperadoresAsignacionPage> {
                                     texto("- : Resta.", fontApp, bigSize,
                                         negroColor, TextAlign.center),
                                     Image.asset(
-                                      "images/fundamentos/resta.png",
+                                      "assets/images/fundamentos/resta.png",
                                       height: 300,
                                     ),
                                   ],
@@ -349,7 +349,7 @@ class _OperadoresAsignacionPageState extends State<OperadoresAsignacionPage> {
                                     texto("* : Multiplicación.", fontApp,
                                         bigSize, negroColor, TextAlign.center),
                                     Image.asset(
-                                      "images/fundamentos/multiplicacion.png",
+                                      "assets/images/fundamentos/multiplicacion.png",
                                       height: 300,
                                     ),
                                   ],
@@ -368,7 +368,7 @@ class _OperadoresAsignacionPageState extends State<OperadoresAsignacionPage> {
                                     texto("/ : División.", fontApp, bigSize,
                                         negroColor, TextAlign.center),
                                     Image.asset(
-                                      "images/fundamentos/division.png",
+                                      "assets/images/fundamentos/division.png",
                                       height: 300,
                                     ),
                                   ],
@@ -386,7 +386,7 @@ class _OperadoresAsignacionPageState extends State<OperadoresAsignacionPage> {
                                         negroColor,
                                         TextAlign.center),
                                     Image.asset(
-                                      "images/fundamentos/modulo.png",
+                                      "assets/images/fundamentos/modulo.png",
                                       height: 300,
                                     ),
                                   ],

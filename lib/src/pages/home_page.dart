@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
             body: Column(
               children: [
                 Image.asset(
-                  'images/background.png',
+                  'assets/images/background.png',
                   width: size.width,
                   height: size.height * 0.4,
                   fit: BoxFit.cover,

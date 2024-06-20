@@ -50,7 +50,7 @@ class _EstructuraPageState extends State<EstructuraPage> {
                     child: SingleChildScrollView(
                         child: Column(children: [
                       Image.asset(
-                        'images/background.png',
+                        'assets/images/background.png',
                         width: size.width,
                         height: size.height * 0.3,
                         fit: BoxFit.cover,
@@ -150,7 +150,7 @@ class _EstructuraPageState extends State<EstructuraPage> {
                                       children: [
                                         texto("En Python", fontApp, bigSize,
                                             negroColor, TextAlign.center),
-                                        Image.asset("images/fundamentos/comentario2.png")
+                                        Image.asset("assets/images/fundamentos/comentario2.png")
                                       ],
                                     ),
                                   ),
@@ -161,7 +161,7 @@ class _EstructuraPageState extends State<EstructuraPage> {
                                       children: [
                                         texto("En C++", fontApp, bigSize,
                                             negroColor, TextAlign.center),
-                                        Image.asset("images/fundamentos/comentario1.png")
+                                        Image.asset("assets/images/fundamentos/comentario1.png")
                                       ],
                                     ),
                                   ),
@@ -172,7 +172,7 @@ class _EstructuraPageState extends State<EstructuraPage> {
                                       children: [
                                         texto("En Java", fontApp, bigSize,
                                             negroColor, TextAlign.center),
-                                        Image.asset("images/fundamentos/comentario1.png")
+                                        Image.asset("assets/images/fundamentos/comentario1.png")
                                       ],
                                     ),
                                   )
@@ -224,7 +224,7 @@ class _EstructuraPageState extends State<EstructuraPage> {
                                             bigSize,
                                             negroColor,
                                             TextAlign.center),
-                                        Image.asset("images/fundamentos/declaracion2.png", height: 200,)
+                                        Image.asset("assets/images/fundamentos/declaracion2.png", height: 200,)
                                       ],
                                     ),
                                   ),
@@ -239,7 +239,7 @@ class _EstructuraPageState extends State<EstructuraPage> {
                                             bigSize,
                                             negroColor,
                                             TextAlign.center),
-                                        Image.asset("images/fundamentos/declaracion1.png", height: 200,)
+                                        Image.asset("assets/images/fundamentos/declaracion1.png", height: 200,)
                                       ],
                                     ),
                                   ),
@@ -254,7 +254,7 @@ class _EstructuraPageState extends State<EstructuraPage> {
                                             bigSize,
                                             negroColor,
                                             TextAlign.center),
-                                        Image.asset("images/fundamentos/declaracion1.png", height: 200,)
+                                        Image.asset("assets/images/fundamentos/declaracion1.png", height: 200,)
                                       ],
                                     ),
                                   )
@@ -309,7 +309,7 @@ class _EstructuraPageState extends State<EstructuraPage> {
                                             negroColor,
                                             TextAlign.center),
                                         Image.asset(
-                                          "images/fundamentos/principal-python.png",
+                                          "assets/images/fundamentos/principal-python.png",
                                           width: 400,
                                         ),
                                       ],
@@ -323,7 +323,7 @@ class _EstructuraPageState extends State<EstructuraPage> {
                                         texto("En C++:", fontApp, bigSize,
                                             negroColor, TextAlign.center),
                                         Image.asset(
-                                          "images/fundamentos/principal-c.png",
+                                          "assets/images/fundamentos/principal-c.png",
                                           width: 400,
                                         ),
                                       ],
@@ -337,7 +337,7 @@ class _EstructuraPageState extends State<EstructuraPage> {
                                         texto("En Java:", fontApp, bigSize,
                                             negroColor, TextAlign.center),
                                         Image.asset(
-                                          "images/fundamentos/principal-java.png",
+                                          "assets/images/fundamentos/principal-java.png",
                                           width: 400,
                                         ),
                                       ],

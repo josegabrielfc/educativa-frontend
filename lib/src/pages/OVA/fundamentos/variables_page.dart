@@ -61,7 +61,7 @@ class _VariablesPageState extends State<VariablesPage> {
                   child: SingleChildScrollView(
                       child: Column(children: [
                     Image.asset(
-                      'images/background.png',
+                      'assets/images/background.png',
                       width: size.width,
                       height: size.height * 0.3,
                       fit: BoxFit.cover,
@@ -140,7 +140,7 @@ class _VariablesPageState extends State<VariablesPage> {
                                     texto("Ejemplo en Python", fontApp, bigSize,
                                         negroColor, TextAlign.center),
                                     Image.asset(
-                                      "images/fundamentos/declaracion2.png",
+                                      "assets/images/fundamentos/declaracion2.png",
                                       height: 200,
                                     )
                                   ],
@@ -154,7 +154,7 @@ class _VariablesPageState extends State<VariablesPage> {
                                     texto("Ejemplo en C++", fontApp, bigSize,
                                         negroColor, TextAlign.center),
                                     Image.asset(
-                                      "images/fundamentos/declaracion1.png",
+                                      "assets/images/fundamentos/declaracion1.png",
                                       height: 200,
                                     )
                                   ],
@@ -168,7 +168,7 @@ class _VariablesPageState extends State<VariablesPage> {
                                     texto("Ejemplo en Java", fontApp, bigSize,
                                         negroColor, TextAlign.center),
                                     Image.asset(
-                                      "images/fundamentos/declaracion1.png",
+                                      "assets/images/fundamentos/declaracion1.png",
                                       height: 200,
                                     )
                                   ],
@@ -204,7 +204,7 @@ class _VariablesPageState extends State<VariablesPage> {
                                     texto("Ejemplos validos", fontApp, bigSize,
                                         negroColor, TextAlign.center),
                                     Image.asset(
-                                      "images/fundamentos/identificador1.png",
+                                      "assets/images/fundamentos/identificador1.png",
                                       width: 300,
                                     ),
                                   ],
@@ -218,7 +218,7 @@ class _VariablesPageState extends State<VariablesPage> {
                                     texto("Ejemplos invalidos", fontApp,
                                         bigSize, negroColor, TextAlign.center),
                                     Image.asset(
-                                      "images/fundamentos/identificador2.png",
+                                      "assets/images/fundamentos/identificador2.png",
                                       width: 300,
                                     ),
                                   ],
@@ -251,7 +251,7 @@ class _VariablesPageState extends State<VariablesPage> {
                                         negroColor,
                                         TextAlign.center),
                                     Image.asset(
-                                      "images/fundamentos/tipo-dato1.png",
+                                      "assets/images/fundamentos/tipo-dato1.png",
                                       width: 300,
                                     ),
                                   ],
@@ -269,7 +269,7 @@ class _VariablesPageState extends State<VariablesPage> {
                                         negroColor,
                                         TextAlign.center),
                                     Image.asset(
-                                      "images/fundamentos/tipo-dato2.png",
+                                      "assets/images/fundamentos/tipo-dato2.png",
                                       width: 300,
                                     ),
                                   ],
@@ -293,7 +293,7 @@ class _VariablesPageState extends State<VariablesPage> {
                                         negroColor,
                                         TextAlign.center),
                                     Image.asset(
-                                      "images/fundamentos/tipo-dato3.png",
+                                      "assets/images/fundamentos/tipo-dato3.png",
                                       width: 300,
                                     ),
                                   ],
@@ -311,7 +311,7 @@ class _VariablesPageState extends State<VariablesPage> {
                                         negroColor,
                                         TextAlign.center),
                                     Image.asset(
-                                      "images/fundamentos/tipo-dato4.png",
+                                      "assets/images/fundamentos/tipo-dato4.png",
                                       width: 300,
                                     ),
                                   ],

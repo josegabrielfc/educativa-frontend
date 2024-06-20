@@ -53,7 +53,7 @@ class _CondicionalesPageState extends State<CondicionalesPage> {
                         child: Column(
                       children: [
                         Image.asset(
-                          'images/background.png',
+                          'assets/images/background.png',
                           width: size.width,
                           height: size.height * 0.3,
                           fit: BoxFit.cover,
@@ -93,7 +93,7 @@ class _CondicionalesPageState extends State<CondicionalesPage> {
                                 ),
                                 separadorVertical(context, 2),
                                 Image.asset(
-                                  'images/condicionales/condicionales_diagrama.jpg',
+                                  'assets/images/condicionales/condicionales_diagrama.jpg',
                                   width: 300,
                                   fit: BoxFit.contain,
                                 ),
