@@ -168,7 +168,7 @@ class _DoWhilePageState extends State<DoWhilePage> {
                 child: SingleChildScrollView(
                   child: Column(children: [
                     Image.asset(
-                      'images/background.png',
+                      'assets/images/background.png',
                       width: size.width,
                       height: size.height * 0.3,
                       fit: BoxFit.cover,
@@ -239,7 +239,7 @@ class _DoWhilePageState extends State<DoWhilePage> {
                                           negroColor,
                                           TextAlign.start),
                                       Image.asset(
-                                        "images/bucles/javacpp_dowhile.png",
+                                        "assets/images/bucles/javacpp_dowhile.png",
                                         height: 200,
                                       )
                                     ],
@@ -278,7 +278,7 @@ class _DoWhilePageState extends State<DoWhilePage> {
                                           negroColor,
                                           TextAlign.start),
                                       Image.asset(
-                                        "images/bucles/javacpp_dowhile.png",
+                                        "assets/images/bucles/javacpp_dowhile.png",
                                         height: 200,
                                       )
                                     ],
@@ -427,7 +427,7 @@ class _DoWhilePageState extends State<DoWhilePage> {
                                       texto("C++", fontExtraBold, bigSize + 2,
                                           negroColor, TextAlign.start),
                                       Image.asset(
-                                        "images/bucles/cpp_dowhile.png",
+                                        "assets/images/bucles/cpp_dowhile.png",
                                         height: 225,
                                       )
                                     ],
@@ -462,7 +462,7 @@ class _DoWhilePageState extends State<DoWhilePage> {
                                       texto("Java", fontExtraBold, bigSize + 2,
                                           negroColor, TextAlign.start),
                                       Image.asset(
-                                        "images/bucles/java_dowhile.png",
+                                        "assets/images/bucles/java_dowhile.png",
                                         height: 225,
                                       )
                                     ],

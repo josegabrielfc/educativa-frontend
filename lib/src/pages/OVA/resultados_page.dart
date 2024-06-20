@@ -173,7 +173,7 @@ class _ResultadosPageState extends State<ResultadosPage> {
               backgroundColor: Colors.transparent.withOpacity(0.1),
               body: Column(children: [
                 Image.asset(
-                  'images/background.png',
+                  'assets/images/background.png',
                   width: size.width,
                   height: size.height * 0.3,
                   fit: BoxFit.cover,
@@ -192,7 +192,7 @@ class _ResultadosPageState extends State<ResultadosPage> {
                         )
                       : Column(
                           children: [
-                            Image.asset("images/no-data.png",
+                            Image.asset("assets/images/no-data.png",
                                 height: 200, color: azulOscColor),
                             texto("No se encontro información", fontApp,
                                 bigSize + 4, azulOscColor, TextAlign.center)

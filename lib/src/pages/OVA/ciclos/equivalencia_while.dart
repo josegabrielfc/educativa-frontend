@@ -48,7 +48,7 @@ class _EquivalenciaWhilePageState extends State<EquivalenciaWhilePage> {
                 child: SingleChildScrollView(
                   child: Column(children: [
                     Image.asset(
-                      'images/background.png',
+                      'assets/images/background.png',
                       width: size.width,
                       height: size.height * 0.3,
                       fit: BoxFit.cover,
@@ -88,14 +88,14 @@ class _EquivalenciaWhilePageState extends State<EquivalenciaWhilePage> {
                               texto("Ejemplo 'Ciclo for' (Python)", fontApp,
                                   bigSize, negroColor, TextAlign.center),
                               Image.asset(
-                                "images/bucles/py_for1.png",
+                                "assets/images/bucles/py_for1.png",
                                 width: 300,
                               ),
                               separadorVertical(context, 2),
                               texto("Ejemplo 'Ciclo while' (Python)", fontApp,
                                   bigSize, negroColor, TextAlign.center),
                               Image.asset(
-                                "images/bucles/py_for_while.png",
+                                "assets/images/bucles/py_for_while.png",
                                 width: 300,
                               ),
                             ],
@@ -108,14 +108,14 @@ class _EquivalenciaWhilePageState extends State<EquivalenciaWhilePage> {
                               texto("Ejemplo 'Ciclo for' (C++)", fontApp,
                                   bigSize, negroColor, TextAlign.center),
                               Image.asset(
-                                "images/bucles/cpp_for.png",
+                                "assets/images/bucles/cpp_for.png",
                                 width: 300,
                               ),
                               separadorVertical(context, 2),
                               texto("Ejemplo 'Ciclo while' (C++)", fontApp,
                                   bigSize, negroColor, TextAlign.center),
                               Image.asset(
-                                "images/bucles/cpp_for_while.png",
+                                "assets/images/bucles/cpp_for_while.png",
                                 width: 300,
                               ),
                             ],
@@ -128,14 +128,14 @@ class _EquivalenciaWhilePageState extends State<EquivalenciaWhilePage> {
                               texto("Ejemplo 'Ciclo for' (Java)", fontApp,
                                   bigSize, negroColor, TextAlign.center),
                               Image.asset(
-                                "images/bucles/java_for.png",
+                                "assets/images/bucles/java_for.png",
                                 width: 300,
                               ),
                               separadorVertical(context, 2),
                               texto("Ejemplo 'Ciclo while' (Java)", fontApp,
                                   bigSize, negroColor, TextAlign.center),
                               Image.asset(
-                                "images/bucles/java_for_while.png",
+                                "assets/images/bucles/java_for_while.png",
                                 width: 300,
                               ),
                             ],

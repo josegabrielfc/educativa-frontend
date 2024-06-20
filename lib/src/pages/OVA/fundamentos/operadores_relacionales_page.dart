@@ -88,7 +88,7 @@ class _OperadoresRelacionalesPageState
                   child: SingleChildScrollView(
                       child: Column(children: [
                     Image.asset(
-                      'images/background.png',
+                      'assets/images/background.png',
                       width: size.width,
                       height: size.height * 0.3,
                       fit: BoxFit.cover,
@@ -127,7 +127,7 @@ class _OperadoresRelacionalesPageState
                                     texto("== : Igual a.", fontApp, bigSize,
                                         negroColor, TextAlign.center),
                                     Image.asset(
-                                      "images/fundamentos/igual.png",
+                                      "assets/images/fundamentos/igual.png",
                                       height: 300,
                                     ),
                                   ],
@@ -141,7 +141,7 @@ class _OperadoresRelacionalesPageState
                                     texto("!= : Diferente de.", fontApp,
                                         bigSize, negroColor, TextAlign.center),
                                     Image.asset(
-                                      "images/fundamentos/diferente.png",
+                                      "assets/images/fundamentos/diferente.png",
                                       height: 300,
                                     ),
                                   ],
@@ -155,7 +155,7 @@ class _OperadoresRelacionalesPageState
                                     texto("> : Mayor que.", fontApp, bigSize,
                                         negroColor, TextAlign.center),
                                     Image.asset(
-                                      "images/fundamentos/mayor.png",
+                                      "assets/images/fundamentos/mayor.png",
                                       height: 300,
                                     ),
                                   ],
@@ -174,7 +174,7 @@ class _OperadoresRelacionalesPageState
                                     texto("< : Menor que.", fontApp, bigSize,
                                         negroColor, TextAlign.center),
                                     Image.asset(
-                                      "images/fundamentos/menor.png",
+                                      "assets/images/fundamentos/menor.png",
                                       height: 300,
                                     ),
                                   ],
@@ -188,7 +188,7 @@ class _OperadoresRelacionalesPageState
                                     texto(">= : Mayor o igual que.", fontApp,
                                         bigSize, negroColor, TextAlign.center),
                                     Image.asset(
-                                      "images/fundamentos/mayor-igual.png",
+                                      "assets/images/fundamentos/mayor-igual.png",
                                       height: 300,
                                     ),
                                   ],
@@ -202,7 +202,7 @@ class _OperadoresRelacionalesPageState
                                     texto("<= : Menor o igual que.", fontApp,
                                         bigSize, negroColor, TextAlign.center),
                                     Image.asset(
-                                      "images/fundamentos/menor-igual.png",
+                                      "assets/images/fundamentos/menor-igual.png",
                                       height: 300,
                                     ),
                                   ],
@@ -231,7 +231,7 @@ class _OperadoresRelacionalesPageState
                                     texto("and : Y lógico.", fontApp, bigSize,
                                         negroColor, TextAlign.center),
                                     Image.asset(
-                                      "images/fundamentos/and.png",
+                                      "assets/images/fundamentos/and.png",
                                       height: 300,
                                     ),
                                   ],
@@ -245,7 +245,7 @@ class _OperadoresRelacionalesPageState
                                     texto("or : O lógico.", fontApp, bigSize,
                                         negroColor, TextAlign.center),
                                     Image.asset(
-                                      "images/fundamentos/or.png",
+                                      "assets/images/fundamentos/or.png",
                                       height: 300,
                                     ),
                                   ],
@@ -259,7 +259,7 @@ class _OperadoresRelacionalesPageState
                                     texto("not : Negación lógica.", fontApp,
                                         bigSize, negroColor, TextAlign.center),
                                     Image.asset(
-                                      "images/fundamentos/not.png",
+                                      "assets/images/fundamentos/not.png",
                                       height: 300,
                                     ),
                                   ],

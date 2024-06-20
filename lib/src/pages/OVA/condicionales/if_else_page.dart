@@ -170,7 +170,7 @@ class _IfElsePageState extends State<IfElsePage> {
                     child: SingleChildScrollView(
                         child: Column(children: [
                       Image.asset(
-                        'images/background.png',
+                        'assets/images/background.png',
                         width: size.width,
                         height: size.height * 0.3,
                         fit: BoxFit.cover,
