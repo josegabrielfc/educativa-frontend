@@ -6,6 +6,7 @@ class UsuarioProvider extends ChangeNotifier {
   String? _token;
   List<TemaModel>? _temas;
   String? _estudianteId;
+  String? _nombreEstudiante;
 
   // Método para actualizar el usuario y notificar a los escuchas
   void setUsuario(String nuevoUsuarioId) {
@@ -49,6 +50,15 @@ class UsuarioProvider extends ChangeNotifier {
 
   // Método get para obtener el estudiante
   String? get estudiante => _estudianteId;
+
+   // Método para actualizar el estudiante y notificar a los escuchas
+  void setNombreEstudiante(String nuevoEstudiante) {
+    _nombreEstudiante = nuevoEstudiante;
+    notifyListeners();
+  }
+
+  // Método get para obtener el estudiante
+  String? get nombre => _nombreEstudiante;
 
   void vaciarUsuarioProvider() {
     _usuarioId = null;

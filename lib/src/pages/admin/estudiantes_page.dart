@@ -248,6 +248,7 @@ Widget tablaEstudiantes(
                                     listen: false);
                             usuarioProvider
                                 .setEstudiante(estudiantes[index].id);
+                            usuarioProvider.setNombreEstudiante(estudiantes[index].nombre);
                             Navigator.pushNamed(
                                 context, "resultados-estudiantes-page");
                           },

@@ -1,5 +1,6 @@
 import 'package:educativa_frontend/src/config/environment/environment.dart';
 import 'package:educativa_frontend/src/models/resultado/resultado_models.dart';
+import 'package:educativa_frontend/src/pages/Login/login_page.dart';
 import 'package:educativa_frontend/src/providers/service_provider.dart';
 import 'package:educativa_frontend/src/providers/usuario_provider.dart';
 import 'package:educativa_frontend/src/widgets/widgets_general.dart';
@@ -37,7 +38,7 @@ class _ResultadosEstudiantePageState extends State<ResultadosEstudiantePage> {
 
     setState(() {
       resultados = resultadoLoad;
-      nombre = resultadoLoad[0].usuario.nombre;
+      nombre = usuarioProvider.nombre!;
       isLoading = false;
     });
   }
@@ -181,7 +182,7 @@ class _ResultadosEstudiantePageState extends State<ResultadosEstudiantePage> {
                     final usuarioProvider =
                         Provider.of<UsuarioProvider>(context, listen: false);
                     usuarioProvider.vaciarUsuarioProvider();
-                    Navigator.pushReplacementNamed(context, 'login-page');
+                    Navigator.push(context, MaterialPageRoute(builder: (_) => const LoginPage()));
                   },
                 ),
               ],
