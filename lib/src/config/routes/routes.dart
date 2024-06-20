@@ -1,5 +1,6 @@
 import 'package:educativa_frontend/src/pages/OVA/app_ova.dart';
 import 'package:educativa_frontend/src/pages/admin/estudiantes_page.dart';
+import 'package:educativa_frontend/src/pages/admin/resultados_estudiantes_page.dart';
 import 'package:flutter_deep_linking/flutter_deep_linking.dart';
 import 'package:educativa_frontend/src/pages/pages.dart';
 
@@ -24,6 +25,10 @@ final router = Router(routes: [
     Route(
       matcher: Matcher.path(EstudiantesPage.name),
       materialBuilder: (_, __) => const EstudiantesPage(),
+    ),
+    Route(
+      matcher: Matcher.path(ResultadosEstudiantePage.name),
+      materialBuilder: (_, __) => const ResultadosEstudiantePage(),
     ),
   ])
 ]);

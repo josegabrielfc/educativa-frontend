@@ -20,6 +20,7 @@ import 'package:educativa_frontend/src/pages/OVA/fundamentos/operadores_relacion
 import 'package:educativa_frontend/src/pages/OVA/fundamentos/variables_page.dart';
 import 'package:educativa_frontend/src/pages/OVA/resultados_page.dart';
 import 'package:educativa_frontend/src/pages/admin/estudiantes_page.dart';
+import 'package:educativa_frontend/src/pages/admin/resultados_estudiantes_page.dart';
 import 'package:educativa_frontend/src/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
@@ -60,4 +61,5 @@ final Map<String, Widget> pages = {
 
   // Admin
   EstudiantesPage.name: const EstudiantesPage(),
+  ResultadosEstudiantePage.name: const ResultadosEstudiantePage(),
 };

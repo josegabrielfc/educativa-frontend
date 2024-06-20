@@ -74,10 +74,10 @@ class _EstudiantesPageState extends State<EstudiantesPage> {
                 title: texto("Cerrar sesión", fontBold, bigSize + 4,
                     blancoColor, TextAlign.center),
                 onTap: () {
-                  // Aquí puedes poner la lógica para cerrar sesión
-                  // Por ejemplo, navegar a la pantalla de inicio de sesión
-                  Navigator.pop(context); // Cierra el Drawer
-                  // Lógica para cerrar sesión
+                  final usuarioProvider =
+                      Provider.of<UsuarioProvider>(context, listen: false);
+                  usuarioProvider.vaciarUsuarioProvider();
+                  Navigator.pushReplacementNamed(context, 'login-page');
                 },
               ),
             ],
@@ -242,7 +242,15 @@ Widget tablaEstudiantes(
                       ]),
                       Column(children: [
                         InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            final usuarioProvider =
+                                Provider.of<UsuarioProvider>(context,
+                                    listen: false);
+                            usuarioProvider
+                                .setEstudiante(estudiantes[index].id);
+                            Navigator.pushNamed(
+                                context, "resultados-estudiantes-page");
+                          },
                           child: const Icon(Icons.visibility),
                         )
                       ]),
