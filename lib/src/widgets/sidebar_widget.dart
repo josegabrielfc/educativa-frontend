@@ -4,6 +4,7 @@ import 'package:educativa_frontend/src/config/environment/environment.dart';
 import 'package:educativa_frontend/src/models/sidebar_item.dart';
 import 'package:educativa_frontend/src/providers/sidebar_provider.dart';
 import 'package:educativa_frontend/src/widgets/widgets_general.dart';
+import 'package:educativa_frontend/src/providers/usuario_provider.dart';
 
 class SidebarWidget extends StatelessWidget {
   static const padding = EdgeInsets.symmetric(horizontal: 20);
@@ -71,6 +72,21 @@ class SidebarWidget extends StatelessWidget {
                   ),
                 ],
               ),
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.logout_outlined,
+                size: 40,
+                color: blancoColor,
+              ),
+              title: texto("Cerrar sesión", fontBold, bigSize + 4,
+                blancoColor, TextAlign.center),
+              onTap: () {
+                final usuarioProvider =
+                  Provider.of<UsuarioProvider>(context, listen: false);
+                usuarioProvider.vaciarUsuarioProvider();
+                Navigator.pushReplacementNamed(context, 'login-page');
+              },
             ),
             separadorVertical(context, 5),
             buildLogo(context, image: 'images/fundamentos.jpg'),
