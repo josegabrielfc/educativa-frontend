@@ -80,7 +80,7 @@ class _ForPageState extends State<ForPage> {
 
     String token = usuarioProvider.token!;
     String usuarioId = usuarioProvider.usuario!;
-    String temaId = usuarioProvider.buscarTemaPorNombre("Bucles do while")!;
+    String temaId = usuarioProvider.buscarTemaPorNombre("Bucles for")!;
     ResultadoForm resultado =
         ResultadoForm(puntaje: puntaje, temaId: temaId, usuarioId: usuarioId);
 
