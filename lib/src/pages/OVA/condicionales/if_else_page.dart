@@ -158,7 +158,7 @@ class _IfElsePageState extends State<IfElsePage> {
               onTap: () async {
                 final provider =
                     Provider.of<SidebarProvider>(context, listen: false);
-                provider.setSidebarItem(SidebarItem.variables);
+                provider.setSidebarItem(SidebarItem.tiposIf);
               }),
         ),
         body: Stack(

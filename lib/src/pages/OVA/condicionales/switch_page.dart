@@ -1,6 +1,8 @@
 import 'package:educativa_frontend/src/config/environment/environment.dart';
 import 'package:educativa_frontend/src/models/resultado/resultado_models.dart';
+import 'package:educativa_frontend/src/models/sidebar_item.dart';
 import 'package:educativa_frontend/src/providers/service_provider.dart';
+import 'package:educativa_frontend/src/providers/sidebar_provider.dart';
 import 'package:educativa_frontend/src/providers/usuario_provider.dart';
 import 'package:educativa_frontend/src/widgets/sidebar_widget.dart';
 import 'package:educativa_frontend/src/widgets/widgets_general.dart';
@@ -138,10 +140,25 @@ class _SwitchPageState extends State<SwitchPage> {
 
     return Scaffold(
       drawer: const SidebarWidget(),
-      appBar: AppBar(
-        title: const Text('Switch'),
-        centerTitle: true,
-        backgroundColor: Colors.blueGrey,
+      appBar: AppBar(backgroundColor: const Color(0xFFC2F8FA)),
+      floatingActionButton: Container(
+        alignment: Alignment.topLeft,
+        padding: const EdgeInsets.only(left: 80, top: 20),
+        child: CustomButton(
+            color: azulOscColor,
+            hoverColor: azulClaColor,
+            size: bigSize + 4,
+            textButton: 'Siguiente',
+            heightButton: 45,
+            widthButton:
+                selectDevice(web: 0.22, cel: 0.64, sizeContext: size.width),
+            sizeBorderRadius: 15,
+            duration: 1000,
+            onTap: () async {
+              final provider =
+                  Provider.of<SidebarProvider>(context, listen: false);
+              provider.setSidebarItem(SidebarItem.ciclos);
+            }),
       ),
       body: Stack(
         children: [
