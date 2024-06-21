@@ -164,7 +164,7 @@ class _ForPageState extends State<ForPage> {
                 child: SingleChildScrollView(
                   child: Column(children: [
                     Image.asset(
-                      'images/background.png',
+                      'assets/images/background.png',
                       width: size.width,
                       height: size.height * 0.3,
                       fit: BoxFit.cover,
@@ -231,7 +231,7 @@ class _ForPageState extends State<ForPage> {
                                           negroColor,
                                           TextAlign.start),
                                       Image.asset(
-                                        "images/bucles/py_for.png",
+                                        "assets/images/bucles/py_for.png",
                                         height: 200,
                                       )
                                     ],
@@ -270,7 +270,7 @@ class _ForPageState extends State<ForPage> {
                                           negroColor,
                                           TextAlign.start),
                                       Image.asset(
-                                        "images/bucles/javacpp_for.png",
+                                        "assets/images/bucles/javacpp_for.png",
                                         height: 200,
                                       )
                                     ],
@@ -309,7 +309,7 @@ class _ForPageState extends State<ForPage> {
                                           negroColor,
                                           TextAlign.start),
                                       Image.asset(
-                                        "images/bucles/javacpp_for.png",
+                                        "assets/images/bucles/javacpp_for.png",
                                         height: 200,
                                       )
                                     ],
@@ -489,7 +489,7 @@ class _ForPageState extends State<ForPage> {
                                           negroColor,
                                           TextAlign.start),
                                       Image.asset(
-                                        "images/bucles/py_for1.png",
+                                        "assets/images/bucles/py_for1.png",
                                         height: 225,
                                       )
                                     ],
@@ -524,7 +524,7 @@ class _ForPageState extends State<ForPage> {
                                       texto("C++", fontExtraBold, bigSize + 2,
                                           negroColor, TextAlign.start),
                                       Image.asset(
-                                        "images/bucles/cpp_for.png",
+                                        "assets/images/bucles/cpp_for.png",
                                         height: 225,
                                       )
                                     ],
@@ -559,7 +559,7 @@ class _ForPageState extends State<ForPage> {
                                       texto("Java", fontExtraBold, bigSize + 2,
                                           negroColor, TextAlign.start),
                                       Image.asset(
-                                        "images/bucles/java_for.png",
+                                        "assets/images/bucles/java_for.png",
                                         height: 225,
                                       )
                                     ],

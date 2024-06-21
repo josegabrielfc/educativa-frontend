@@ -51,7 +51,7 @@ class _FundamentosPageState extends State<FundamentosPage> {
                 child: SingleChildScrollView(
                   child: Column(children: [
                     Image.asset(
-                      'images/background.png',
+                      'assets/images/background.png',
                       width: size.width,
                       height: size.height * 0.3,
                       fit: BoxFit.cover,
@@ -200,7 +200,7 @@ class _FundamentosPageState extends State<FundamentosPage> {
                       ),
                     ),
                     separadorVertical(context, 2),
-                    Image.asset("images/fundamentos/lenguajes.png"),
+                    Image.asset("assets/images/fundamentos/lenguajes.png"),
                     separadorVertical(context, 2),
                   ]),
                 ),

@@ -129,7 +129,7 @@ class _EstudiantesPageState extends State<EstudiantesPage> {
                 ? Center(child: tablaEstudiantes(context, estudiantesFiltrados))
                 : Column(
                     children: [
-                      Image.asset("images/no-data.png",
+                      Image.asset("assets/images/no-data.png",
                           height: 200, color: azulOscColor),
                       texto("No se encontro información", fontApp, bigSize + 4,
                           azulOscColor, TextAlign.center)
@@ -248,6 +248,7 @@ Widget tablaEstudiantes(
                                     listen: false);
                             usuarioProvider
                                 .setEstudiante(estudiantes[index].id);
+                            usuarioProvider.setNombreEstudiante(estudiantes[index].nombre);
                             Navigator.pushNamed(
                                 context, "resultados-estudiantes-page");
                           },

@@ -56,7 +56,7 @@ class _WhilePageState extends State<WhilePage> {
                 child: SingleChildScrollView(
                   child: Column(children: [
                     Image.asset(
-                      'images/background.png',
+                      'assets/images/background.png',
                       width: size.width,
                       height: size.height * 0.3,
                       fit: BoxFit.cover,
@@ -127,7 +127,7 @@ class _WhilePageState extends State<WhilePage> {
                                           negroColor,
                                           TextAlign.start),
                                       Image.asset(
-                                        "images/bucles/py_while1.png",
+                                        "assets/images/bucles/py_while1.png",
                                         height: 200,
                                       )
                                     ],
@@ -166,7 +166,7 @@ class _WhilePageState extends State<WhilePage> {
                                           negroColor,
                                           TextAlign.start),
                                       Image.asset(
-                                        "images/bucles/java_while1.png",
+                                        "assets/images/bucles/java_while1.png",
                                         height: 200,
                                       )
                                     ],
@@ -205,7 +205,7 @@ class _WhilePageState extends State<WhilePage> {
                                           negroColor,
                                           TextAlign.start),
                                       Image.asset(
-                                        "images/bucles/java_while1.png",
+                                        "assets/images/bucles/java_while1.png",
                                         height: 200,
                                       )
                                     ],
@@ -350,7 +350,7 @@ class _WhilePageState extends State<WhilePage> {
                                           negroColor,
                                           TextAlign.start),
                                       Image.asset(
-                                        "images/bucles/py_while2.png",
+                                        "assets/images/bucles/py_while2.png",
                                         height: 225,
                                       )
                                     ],
@@ -385,7 +385,7 @@ class _WhilePageState extends State<WhilePage> {
                                       texto("C++", fontExtraBold, bigSize + 2,
                                           negroColor, TextAlign.start),
                                       Image.asset(
-                                        "images/bucles/cpp_while2.png",
+                                        "assets/images/bucles/cpp_while2.png",
                                         height: 225,
                                       )
                                     ],
@@ -420,7 +420,7 @@ class _WhilePageState extends State<WhilePage> {
                                       texto("Java", fontExtraBold, bigSize + 2,
                                           negroColor, TextAlign.start),
                                       Image.asset(
-                                        "images/bucles/java_while2.png",
+                                        "assets/images/bucles/java_while2.png",
                                         height: 225,
                                       )
                                     ],

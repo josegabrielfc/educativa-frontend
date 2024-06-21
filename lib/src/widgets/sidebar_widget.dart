@@ -148,7 +148,14 @@ class SidebarWidget extends StatelessWidget {
         color: Colors.black12,
         child: InkWell(
           onTap: (){
-            
+            // final usuarioProvider =
+            //       Provider.of<UsuarioProvider>(context, listen: false);
+            //     usuarioProvider.vaciarUsuarioProvider();
+            // final navigatorProvider =
+            //       Provider.of<NavigatorProvider>(context, listen: false);
+            //       navigatorProvider.clear();
+            // navigatorProvider.pushInterViews(context, page: "home-page");
+
           },
           child: Container(
             padding: padding.add(const EdgeInsets.symmetric(vertical: 10)),
